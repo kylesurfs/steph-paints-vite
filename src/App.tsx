@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import About from './pages/About';
 import ActiveProjects from './pages/ActiveProjects';
 import Contact from './pages/Contact';
 import { ThemeProvider } from './components/ThemeToggle';
+import { Header } from './components/Header';
 // import { YourContextProvider } from './context/YourContext';
 
 const App: React.FC = () => {
@@ -13,7 +13,7 @@ const App: React.FC = () => {
     <ThemeProvider>
       <Router>
         {/* <YourContextProvider> */}
-        <NavBar />
+        <Header />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
