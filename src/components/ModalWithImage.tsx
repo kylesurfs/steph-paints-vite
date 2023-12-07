@@ -1,7 +1,6 @@
 import { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { CheckIcon } from '@heroicons/react/24/outline';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 type ModalWithImageProps = {
   isOpen: boolean;
@@ -22,17 +21,17 @@ export default function ModalWithImage({
   onBtnClick,
   imageURL,
 }: ModalWithImageProps) {
-  const [open, setOpen] = useState(true);
-  const navigate = useNavigate();
+  //   const [open, setOpen] = useState(true);
+  //   const navigate = useNavigate();
 
-  const submissionHandler = () => {
-    setOpen(false);
-    navigate('/');
-  };
+  //   const submissionHandler = () => {
+  //     setOpen(false);
+  //     navigate('/');
+  //   };
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+  //   const closeModal = () => {
+  //     setIsOpen(false);
+  //   };
 
   return (
     <Transition.Root show={isOpen} as={Fragment}>
