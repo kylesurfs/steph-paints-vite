@@ -151,7 +151,7 @@ function AvatarContainer({
     <div
       className={clsx(
         className,
-        'h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10'
+        'ml-6 h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10'
       )}
       {...props}
     />
@@ -169,7 +169,7 @@ function Avatar({
     <NavLink
       to='/'
       aria-label='Home'
-      className={clsx(className, 'pointer-events-auto')}
+      className={clsx(className, 'pointer-events-auto ml-6')}
       {...props}
     >
       <img
@@ -177,7 +177,7 @@ function Avatar({
         alt=''
         sizes={large ? '4rem' : '2.25rem'}
         className={clsx(
-          'rounded-full bg-zinc-100 object-cover dark:bg-zinc-800',
+          'rounded-full bg-zinc-100 object-cover dark:bg-zinc-900',
           large ? 'h-16 w-16' : 'h-9 w-9'
         )}
       />
@@ -368,7 +368,7 @@ export function Header() {
                 <DesktopNavigation className='pointer-events-auto hidden md:block' />
               </div>
               <div className='flex justify-end md:flex-1'>
-                <div className='pointer-events-auto'>
+                <div className='pointer-events-auto pr-4'>
                   <ThemeToggle />
                 </div>
               </div>
