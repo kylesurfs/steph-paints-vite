@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect, useRef } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 // import { useNavigate } from 'react-router-dom';
 
@@ -21,6 +21,33 @@ export default function ModalWithImage({
   onBtnClick,
   imageURL,
 }: ModalWithImageProps) {
+  // Try code to prevent auto-scrolling:
+  // DEV -- w/o this the page auto-scrolls to the top when the modal opens
+  const modalRef = useRef(null);
+
+  // Effect to manage scroll position
+  useEffect(() => {
+    if (isOpen) {
+      // Record the current scroll position
+      const scrollY = window.scrollY;
+
+      // Apply a fixed position to your body or main container to prevent background scroll
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+
+      // Optional: Apply additional styling as necessary to prevent width changes
+      // document.body.style.width = '100%';
+
+      return () => {
+        // Remove the fixed position and reset scroll position when modal closes
+        const scrollY = document.body.style.top;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      };
+    }
+  }, [isOpen]);
+
   //   const [open, setOpen] = useState(true);
   //   const navigate = useNavigate();
 
@@ -59,7 +86,10 @@ export default function ModalWithImage({
               leaveFrom='opacity-100 translate-y-0 sm:scale-100'
               leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
             >
-              <Dialog.Panel className='relative transform overflow-hidden rounded-lg bg-white dark:bg-zinc-900 px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6'>
+              <Dialog.Panel
+                ref={modalRef}
+                className='relative transform overflow-hidden rounded-lg bg-white dark:bg-zinc-900 px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6'
+              >
                 <div>
                   {/* <div className='mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100'> */}
                   <div className='mx-auto flex items-center justify-center rounded-full'>
