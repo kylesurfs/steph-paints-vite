@@ -174,7 +174,7 @@ function Avatar({
     >
       <img
         src={avatarImage}
-        alt=''
+        alt='Profile picture'
         sizes={large ? '4rem' : '2.25rem'}
         className={clsx(
           'rounded-full bg-zinc-100 object-cover dark:bg-zinc-900',
@@ -356,13 +356,7 @@ export function Header() {
             }}
           >
             <div className='relative flex gap-4'>
-              <div className='flex flex-1'>
-                {!isHomePage && (
-                  <AvatarContainer>
-                    <Avatar />
-                  </AvatarContainer>
-                )}
-              </div>
+              <div className='flex flex-1'>{!isHomePage && <Avatar />}</div>
               <div className='flex flex-1 justify-end md:justify-center'>
                 <MobileNavigation className='pointer-events-auto md:hidden' />
                 <DesktopNavigation className='pointer-events-auto hidden md:block' />
