@@ -10,6 +10,29 @@ export default function RequestForm() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     setIsModalOpen(true);
+
+    const fd = new FormData(event.currentTarget);
+    // Create obj to hold the data
+    const data: { [key: string]: FormDataEntryValue | FormDataEntryValue[] } =
+      {};
+
+    // Iterate over formData entries
+    fd.forEach((value, key) => {
+      // Check if data already has the key for arrays (e.g., checkboxes)
+      if (data.hasOwnProperty(key)) {
+        // If the value is not an array, create one and push the new value
+        if (!Array.isArray(data[key])) {
+          data[key] = [data[key] as FormDataEntryValue, value];
+        } else {
+          (data[key] as FormDataEntryValue[]).push(value);
+        }
+      } else {
+        // Add the key-value pair to data object
+        data[key] = value;
+      }
+    });
+
+    console.log(data); // Here, you can do further processing with the data object
   };
 
   const closeModal = (): void => {
@@ -19,6 +42,7 @@ export default function RequestForm() {
   const handleModalButtonClick = (): void => {
     closeModal();
     navigate('/');
+    window.scrollTo(0, 0);
   };
 
   return (

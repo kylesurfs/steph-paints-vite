@@ -91,7 +91,7 @@ export const PRODUCTS = [
     href: '#',
     price: '$0',
     description:
-      'Digital painting of a dog, printed on a canvas, and painted over.',
+      'This was a combination of digital and physical art. I drew this dog on the iPad using Procreate. Then I printed it onyo a canvas and painted over it to make it more textured.',
     type: 'Painting',
     medium: 'Canvas',
     utensil: 'Procreate + Acrylic',

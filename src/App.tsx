@@ -6,6 +6,7 @@ import ActiveProjects from './pages/ActiveProjects';
 import Contact from './pages/Contact';
 import { ThemeProvider } from './components/ThemeToggle';
 import { Header } from './components/Header';
+import { Footer } from './components/Footer';
 // import { YourContextProvider } from './context/YourContext';
 
 const App: React.FC = () => {
@@ -21,6 +22,7 @@ const App: React.FC = () => {
           <Route path='/contact' element={<Contact />} />
         </Routes>
         {/* </YourContextProvider> */}
+        <Footer />
       </Router>
     </ThemeProvider>
   );
