@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { PhotoIcon } from '@heroicons/react/24/solid';
 import ConfirmationModal from './ConfirmationModal';
 
+//-- Types --//
 type FormData = {
   about: string;
   firstName: string;
@@ -11,42 +12,114 @@ type FormData = {
   file?: File | null;
 };
 
+type FormErrors = {
+  about?: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+};
+
+//-- Exported component --//
 export default function RequestForm() {
   const navigate = useNavigate();
+
+  //-- State mgmt --//
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     about: '',
     firstName: '',
     lastName: '',
     email: '',
+    file: null,
+  });
+  const [formErrors, setFormErrors] = useState<FormErrors>({});
+  // Add a new state for display values, so they can be cleared if the ConfirmationModal is closed
+  const [displayValues, setDisplayValues] = useState<FormData>({
+    about: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    file: null,
   });
   const [fileUploadError, setFileUploadError] = useState<string | null>(null);
 
+  // Type guard to check if a key is a keyof FormErrors
+  function isKeyOfFormErrors(key: any): key is keyof FormErrors {
+    return key in formErrors;
+  }
+
+  //-- Input change handlers --//
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value });
+    const { name, value } = event.target;
+
+    // Update display values
+    setDisplayValues({
+      ...displayValues,
+      [name]: value,
+    });
+
+    // Check if the name is a valid key of FormErrors and if there's an error for this field
+    if (isKeyOfFormErrors(name) && formErrors[name]) {
+      // Clear the error for this field
+      setFormErrors({
+        ...formErrors,
+        [name]: undefined,
+      });
+    }
   };
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (file && file.size > 10 * 1024 * 1024) {
+      // DEV -- need to increase this limit so steph gets high res photos to work form
       // 10MB limit
       setFileUploadError('File too large, please upload a file < 10MB');
     } else {
       setFileUploadError(null);
+      setDisplayValues({ ...displayValues, file });
       setFormData({ ...formData, file });
     }
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
-    event.preventDefault();
-    setIsModalOpen(true);
-    console.log(formData); // DEV -- Replace this with submission logic
+  //-- Form input validation handling --//
+
+  const validateForm = () => {
+    const errors: FormErrors = {};
+    if (!displayValues.about)
+      errors.about = 'Please provide details about your request.';
+    if (!displayValues.firstName) errors.firstName = 'First name is required.';
+    if (!displayValues.lastName) errors.lastName = 'Last name is required.';
+    if (!displayValues.email) {
+      errors.email = 'Email is required.';
+      // } else if (!validateEmail(displayValues.email)) {
+      //   errors.email = 'Please enter a valid email address.';
+    }
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
   };
 
+  //-- Submission handling --//
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    if (!validateForm()) return;
+    setFormData(displayValues);
+
+    console.log(displayValues); // DEV -- Replace this with submission logic
+    setIsModalOpen(true);
+  };
+
+  //-- Modal handling --//
   const closeModal = (): void => {
     setIsModalOpen(false);
+    setDisplayValues({
+      about: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+    });
   };
 
   const handleModalButtonClick = (): void => {
@@ -80,9 +153,15 @@ export default function RequestForm() {
                     id='about'
                     name='about'
                     rows={3}
-                    className='block w-full max-w-2xl rounded-md border-0 py-1.5 text-gray-900 dark:text-zinc-400 dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-                    defaultValue={''}
+                    className={`block w-full max-w-2xl rounded-md border-0 py-1.5 dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 
+                    ${
+                      formErrors.about
+                        ? ' placeholder:text-red-600 dark:placeholder:text-red-400 font-semibold'
+                        : 'text-gray-900 dark:text-zinc-400 placeholder:text-gray-400'
+                    }`}
+                    value={displayValues.about}
                     onChange={handleInputChange}
+                    placeholder={formErrors.about || ''}
                   />
                   <p className='mt-3 text-sm leading-6 text-gray-600 dark:text-zinc-400 max-w-2xl'>
                     Write a few sentences about what you would like Steph to
@@ -125,8 +204,6 @@ export default function RequestForm() {
                       <p className='text-xs leading-5 text-gray-600 dark:text-zinc-400'>
                         PNG, JPG, GIF up to 10MB
                       </p>
-                      {/* TODO -- ADD CODE TO HANDLE FILE UPLOAD */}
-
                       {fileUploadError && (
                         <div className='mt-4 flex text-sm leading-6 text-gray-600 dark:text-zinc-400 mx-1'>
                           <span className='text-red-200 text-sm bg-red-800 rounded-lg border border-red-800 px-1 font-semibold'>
@@ -171,11 +248,18 @@ export default function RequestForm() {
                 <div className='mt-2 sm:col-span-2 sm:mt-0 '>
                   <input
                     type='text'
-                    name='first-name'
+                    name='firstName'
                     id='first-name'
                     autoComplete='given-name'
-                    className='block w-full rounded-md border-0 py-1.5 dark:bg-zinc-800 text-gray-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6'
+                    className={`block w-full rounded-md border-0 py-1.5 dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 
+                    ${
+                      formErrors.firstName
+                        ? ' placeholder:text-red-600 dark:placeholder:text-red-400 font-semibold'
+                        : 'text-gray-900 dark:text-zinc-400 placeholder:text-gray-400'
+                    }`}
+                    value={displayValues.firstName}
                     onChange={handleInputChange}
+                    placeholder={formErrors.firstName || ''}
                   />
                 </div>
               </div>
@@ -190,11 +274,18 @@ export default function RequestForm() {
                 <div className='mt-2 sm:col-span-2 sm:mt-0'>
                   <input
                     type='text'
-                    name='last-name'
+                    name='lastName'
                     id='last-name'
                     autoComplete='family-name'
-                    className='block w-full rounded-md border-0 py-1.5 dark:bg-zinc-800 text-gray-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6'
+                    className={`block w-full rounded-md border-0 py-1.5 dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 
+                    ${
+                      formErrors.lastName
+                        ? ' placeholder:text-red-600 dark:placeholder:text-red-400 font-semibold'
+                        : 'text-gray-900 dark:text-zinc-400 placeholder:text-gray-400'
+                    }`}
+                    value={displayValues.lastName}
                     onChange={handleInputChange}
+                    placeholder={formErrors.lastName || ''}
                   />
                 </div>
               </div>
@@ -212,8 +303,15 @@ export default function RequestForm() {
                     name='email'
                     type='email'
                     autoComplete='email'
-                    className='block w-full rounded-md border-0 py-1.5 dark:bg-zinc-800 text-gray-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6'
+                    className={`block w-full rounded-md border-0 py-1.5 dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6 
+                    ${
+                      formErrors.email
+                        ? ' placeholder:text-red-600 dark:placeholder:text-red-400 font-semibold'
+                        : 'text-gray-900 dark:text-zinc-400 placeholder:text-gray-400'
+                    }`}
+                    value={displayValues.email}
                     onChange={handleInputChange}
+                    placeholder={formErrors.email || ''}
                   />
                 </div>
               </div>
