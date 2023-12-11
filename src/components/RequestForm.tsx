@@ -1,38 +1,48 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PhotoIcon } from '@heroicons/react/24/solid';
 import ConfirmationModal from './ConfirmationModal';
 
+type FormData = {
+  about: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  file?: File | null;
+};
+
 export default function RequestForm() {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState<FormData>({
+    about: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+  });
+  const [fileUploadError, setFileUploadError] = useState<string | null>(null);
+
+  const handleInputChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
+
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files ? event.target.files[0] : null;
+    if (file && file.size > 10 * 1024 * 1024) {
+      // 10MB limit
+      setFileUploadError('File too large, please upload a file < 10MB');
+    } else {
+      setFileUploadError(null);
+      setFormData({ ...formData, file });
+    }
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     setIsModalOpen(true);
-
-    const fd = new FormData(event.currentTarget);
-    // Create obj to hold the data
-    const data: { [key: string]: FormDataEntryValue | FormDataEntryValue[] } =
-      {};
-
-    // Iterate over formData entries
-    fd.forEach((value, key) => {
-      // Check if data already has the key for arrays (e.g., checkboxes)
-      if (data.hasOwnProperty(key)) {
-        // If the value is not an array, create one and push the new value
-        if (!Array.isArray(data[key])) {
-          data[key] = [data[key] as FormDataEntryValue, value];
-        } else {
-          (data[key] as FormDataEntryValue[]).push(value);
-        }
-      } else {
-        // Add the key-value pair to data object
-        data[key] = value;
-      }
-    });
-
-    console.log(data); // Here, you can do further processing with the data object
+    console.log(formData); // DEV -- Replace this with submission logic
   };
 
   const closeModal = (): void => {
@@ -72,6 +82,7 @@ export default function RequestForm() {
                     rows={3}
                     className='block w-full max-w-2xl rounded-md border-0 py-1.5 text-gray-900 dark:text-zinc-400 dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                     defaultValue={''}
+                    onChange={handleInputChange}
                   />
                   <p className='mt-3 text-sm leading-6 text-gray-600 dark:text-zinc-400 max-w-2xl'>
                     Write a few sentences about what you would like Steph to
@@ -95,7 +106,7 @@ export default function RequestForm() {
                         className='mx-auto h-12 w-12 text-gray-300 dark:text-zinc-400'
                         aria-hidden='true'
                       />
-                      <div className='mt-4 flex text-sm leading-6 text-gray-600 dark:text-zinc-400'>
+                      <div className='mt-4 flex text-sm leading-6 text-gray-600 dark:text-zinc-400 mx-12'>
                         <label
                           htmlFor='file-upload'
                           className='relative cursor-pointer rounded-md bg-white dark:bg-zinc-800 font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500'
@@ -106,6 +117,7 @@ export default function RequestForm() {
                             name='file-upload'
                             type='file'
                             className='sr-only'
+                            onChange={handleFileChange}
                           />
                         </label>
                         <p className='pl-1'>or drag and drop</p>
@@ -113,6 +125,22 @@ export default function RequestForm() {
                       <p className='text-xs leading-5 text-gray-600 dark:text-zinc-400'>
                         PNG, JPG, GIF up to 10MB
                       </p>
+                      {/* TODO -- ADD CODE TO HANDLE FILE UPLOAD */}
+
+                      {fileUploadError && (
+                        <div className='mt-4 flex text-sm leading-6 text-gray-600 dark:text-zinc-400 mx-1'>
+                          <span className='text-red-200 text-sm bg-red-800 rounded-lg border border-red-800 px-1 font-semibold'>
+                            {fileUploadError}
+                          </span>
+                        </div>
+                      )}
+                      {!fileUploadError && formData.file && (
+                        <div className='mt-4 flex text-sm leading-6 text-gray-600 dark:text-zinc-400 mx-14'>
+                          <span className='text-green-200 text-sm bg-green-800 rounded-lg border border-green-800 px-1'>
+                            File uploaded successfully
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </div>
                   <p className='mt-3 text-sm leading-6 text-gray-600 dark:text-zinc-400'>
@@ -147,6 +175,7 @@ export default function RequestForm() {
                     id='first-name'
                     autoComplete='given-name'
                     className='block w-full rounded-md border-0 py-1.5 dark:bg-zinc-800 text-gray-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6'
+                    onChange={handleInputChange}
                   />
                 </div>
               </div>
@@ -165,6 +194,7 @@ export default function RequestForm() {
                     id='last-name'
                     autoComplete='family-name'
                     className='block w-full rounded-md border-0 py-1.5 dark:bg-zinc-800 text-gray-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6'
+                    onChange={handleInputChange}
                   />
                 </div>
               </div>
@@ -183,6 +213,7 @@ export default function RequestForm() {
                     type='email'
                     autoComplete='email'
                     className='block w-full rounded-md border-0 py-1.5 dark:bg-zinc-800 text-gray-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6'
+                    onChange={handleInputChange}
                   />
                 </div>
               </div>
