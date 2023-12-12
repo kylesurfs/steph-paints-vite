@@ -13,8 +13,7 @@ import clsx from 'clsx';
 import { Container } from './Container';
 import avatarImage from '../images/stephAvatar.png';
 import ThemeToggle from './ThemeToggle';
-import CloseIcon from './UI/CloseIcon';
-import ChevronDownIcon from './UI/ChevronDownIcon';
+import { ChevronDownIcon, CloseIcon } from './UI/icons';
 
 function MobileNavItem({
   to,
