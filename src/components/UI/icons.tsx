@@ -51,11 +51,13 @@ export function UsersIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
-      fill='none'
+      fill='currentColor'
       viewBox='0 0 24 24'
-      strokeWidth={1.5}
+      strokeWidth={1.0}
       stroke='currentColor'
-      className='w-6 h-6'
+      // className='w-6 h-6'
+      width='24'
+      height='24'
       {...props}
     >
       <path
@@ -72,7 +74,7 @@ export function DogIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
     <svg
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 24 24'
-      fill='#000000'
+      fill='currentColor'
       width='24'
       height='24'
       {...props}
@@ -88,7 +90,7 @@ export function LandscapeIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
     <svg
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 24 24'
-      fill='#000000'
+      fill='currentColor'
       width='24'
       height='24'
       {...props}
@@ -103,7 +105,7 @@ export function PencilIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
     <svg
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 24 24'
-      fill='#000000'
+      fill='currentColor'
       width='24'
       height='24'
       {...props}
@@ -118,7 +120,8 @@ export function PaintIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
     <svg
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 24 24'
-      fill='#000000'
+      // fill='#000000'
+      fill='currentColor'
       width='24'
       height='24'
       {...props}
