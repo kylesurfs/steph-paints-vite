@@ -14,6 +14,7 @@ export const PRODUCTS = [
     imageSrc:
       'src/images/luis.png',
     imageAlt: 'Colored painting of Luis on canvas using acrylic.',
+    tag: 'People',
   },
   {
     id: 2,
@@ -28,6 +29,7 @@ export const PRODUCTS = [
     imageSrc: 'src/images/fkj.png',
     imageAlt:
       'FKJ portrait drawn with pencil on paper.',
+      tag: 'People',
   },
   {
     id: 3,
@@ -42,6 +44,7 @@ export const PRODUCTS = [
     imageSrc:
       'src/images/hb.png',
     imageAlt: 'Black and white painting of Hailey Beiber on canvas using acrylic.',
+    tag: 'People',
   },
   {
     id: 4,
@@ -56,6 +59,7 @@ export const PRODUCTS = [
     imageSrc: 'src/images/kids.png',
     imageAlt:
       'Portrait of children. Black and white painting using acrylic on canvas.',
+      tag: 'People',
   },
   {
     id: 5,
@@ -70,6 +74,7 @@ export const PRODUCTS = [
     imageSrc:
       'src/images/remi.png',
     imageAlt: 'Digital painting of our dog, Remi, on the iPad using Procreate.',
+    tag: 'Animal',
   },
   {
     id: 6,
@@ -84,6 +89,7 @@ export const PRODUCTS = [
     imageSrc:
       'src/images/woman.png',
     imageAlt: 'Digital painting of a woman on the iPad using Procreate.',
+    tag: 'People',
   },
   {
     id: 7,
@@ -98,6 +104,7 @@ export const PRODUCTS = [
     imageSrc:
       'src/images/dog.png',
     imageAlt: 'Digital painting of a dog, printed on a canvas, and painted over.',
+    tag: 'Animal',
   },
   {
     id: 8,
@@ -112,6 +119,7 @@ export const PRODUCTS = [
     imageSrc:
       'src/images/shannon_dog.png',
     imageAlt: 'Painting of the late Mr. Lincoln with a ball.',
+    tag: 'Animal',
   },
   {
     id: 9,
@@ -126,6 +134,7 @@ export const PRODUCTS = [
     imageSrc:
       'src/images/girl.png',
     imageAlt: 'Black and white painting of a girl on cardboard.',
+    tag: 'People',
   },
    {
     id: 10,
@@ -140,6 +149,7 @@ export const PRODUCTS = [
     imageSrc:
       'src/images/jm.png',
     imageAlt: 'Black and white painting of John Mayer on canvas using acrylic.',
+    tag: 'People',
   },
   {
     id: 11,
@@ -154,6 +164,7 @@ export const PRODUCTS = [
     imageSrc:
       'src/images/leo.png',
     imageAlt: 'Black and white painting of Leonardo DiCaprio.',
+    tag: 'People',
   },
   // More products...
 ];
