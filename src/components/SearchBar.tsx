@@ -65,10 +65,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 
   return (
     <Container>
-      <div
-        className='mx-auto md:px-6 lg:px-8 xl:px-12'
-        style={{ maxWidth: '1300px' }}
-      >
+      <div className='mx-auto md:px-6 lg:px-8' style={{ maxWidth: '1300px' }}>
         <div className='flex flex-col lg:flex-row items-center lg:space-x-4 space-y-4 lg:space-y-0 justify-center'>
           <div className='w-full lg:w-auto'>
             <IconFilterBar />
