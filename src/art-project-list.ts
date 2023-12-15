@@ -1,8 +1,22 @@
 // const fkj: string = './images/fkj.png's
 
 export const PRODUCTS = [
-  {
+   {
     id: 1,
+    name: 'Luis',
+    href: '#',
+    price: '$0',
+    description:
+      'Colored painting of Luis on canvas using acrylic.',
+    type: 'Painting',
+    medium: 'Canvas',
+    utensil: 'Acrylic',
+    imageSrc:
+      'src/images/luis.png',
+    imageAlt: 'Colored painting of Luis on canvas using acrylic.',
+  },
+  {
+    id: 2,
     name: 'FKJ',
     href: '#',
     price: '$0',
@@ -16,7 +30,7 @@ export const PRODUCTS = [
       'FKJ portrait drawn with pencil on paper.',
   },
   {
-    id: 2,
+    id: 3,
     name: 'Hailey Bieber',
     href: '#',
     price: '$0',
@@ -28,20 +42,6 @@ export const PRODUCTS = [
     imageSrc:
       'src/images/hb.png',
     imageAlt: 'Black and white painting of Hailey Beiber on canvas using acrylic.',
-  },
-  {
-    id: 3,
-    name: 'John Mayer',
-    href: '#',
-    price: '$0',
-    description:
-      'Black and white painting of John Mayer on canvas using acrylic.',
-    type: 'Painting',
-    medium: 'Canvas',
-    utensil: 'Acrylic',
-    imageSrc:
-      'src/images/jm.png',
-    imageAlt: 'Black and white painting of John Mayer on canvas using acrylic.',
   },
   {
     id: 4,
@@ -126,6 +126,34 @@ export const PRODUCTS = [
     imageSrc:
       'src/images/girl.png',
     imageAlt: 'Black and white painting of a girl on cardboard.',
+  },
+   {
+    id: 10,
+    name: 'John Mayer',
+    href: '#',
+    price: '$0',
+    description:
+      'Black and white painting of John Mayer on canvas using acrylic.',
+    type: 'Painting',
+    medium: 'Canvas',
+    utensil: 'Acrylic',
+    imageSrc:
+      'src/images/jm.png',
+    imageAlt: 'Black and white painting of John Mayer on canvas using acrylic.',
+  },
+  {
+    id: 11,
+    name: 'Leonardo DiCaprio',
+    href: '#',
+    price: '$0',
+    description:
+      'Black and white painting of Leonardo DiCaprio',
+    type: 'Painting',
+      medium: 'Canvas',
+    utensil: 'Acrylic',
+    imageSrc:
+      'src/images/leo.png',
+    imageAlt: 'Black and white painting of Leonardo DiCaprio.',
   },
   // More products...
 ];
