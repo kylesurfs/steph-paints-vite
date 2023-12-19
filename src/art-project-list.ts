@@ -15,6 +15,7 @@ export const PRODUCTS = [
       'src/images/luis.png',
     imageAlt: 'Colored painting of Luis on canvas using acrylic.',
     tag: 'People',
+    status: 'Completed',
   },
   {
     id: 2,
@@ -29,7 +30,8 @@ export const PRODUCTS = [
     imageSrc: 'src/images/fkj.png',
     imageAlt:
       'FKJ portrait drawn with pencil on paper.',
-      tag: 'People',
+    tag: 'People',
+    status: 'Completed',
   },
   {
     id: 3,
@@ -45,6 +47,7 @@ export const PRODUCTS = [
       'src/images/hb.png',
     imageAlt: 'Black and white painting of Hailey Beiber on canvas using acrylic.',
     tag: 'People',
+    status: 'Completed',
   },
   {
     id: 4,
@@ -59,7 +62,8 @@ export const PRODUCTS = [
     imageSrc: 'src/images/kids.png',
     imageAlt:
       'Portrait of children. Black and white painting using acrylic on canvas.',
-      tag: 'People',
+    tag: 'People',
+    status: 'Completed',
   },
   {
     id: 5,
@@ -75,6 +79,7 @@ export const PRODUCTS = [
       'src/images/remi.png',
     imageAlt: 'Digital painting of our dog, Remi, on the iPad using Procreate.',
     tag: 'Animal',
+    status: 'Completed',
   },
   {
     id: 6,
@@ -90,6 +95,7 @@ export const PRODUCTS = [
       'src/images/woman.png',
     imageAlt: 'Digital painting of a woman on the iPad using Procreate.',
     tag: 'People',
+    status: 'Completed',
   },
   {
     id: 7,
@@ -105,6 +111,7 @@ export const PRODUCTS = [
       'src/images/dog.png',
     imageAlt: 'Digital painting of a dog, printed on a canvas, and painted over.',
     tag: 'Animal',
+    status: 'Completed',
   },
   {
     id: 8,
@@ -120,6 +127,7 @@ export const PRODUCTS = [
       'src/images/shannon_dog.png',
     imageAlt: 'Painting of the late Mr. Lincoln with a ball.',
     tag: 'Animal',
+    status: 'Completed',
   },
   {
     id: 9,
@@ -135,6 +143,7 @@ export const PRODUCTS = [
       'src/images/girl.png',
     imageAlt: 'Black and white painting of a girl on cardboard.',
     tag: 'People',
+    status: 'Completed',
   },
    {
     id: 10,
@@ -150,6 +159,7 @@ export const PRODUCTS = [
       'src/images/jm.png',
     imageAlt: 'Black and white painting of John Mayer on canvas using acrylic.',
     tag: 'People',
+    status: 'Completed',
   },
   {
     id: 11,
@@ -165,6 +175,7 @@ export const PRODUCTS = [
       'src/images/leo.png',
     imageAlt: 'Black and white painting of Leonardo DiCaprio.',
     tag: 'People',
+    status: 'Completed',
   },
   // More products...
 ];

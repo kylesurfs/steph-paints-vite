@@ -22,6 +22,8 @@ const Cards: React.FC<{ searchTerm: string }> = ({ searchTerm }) => {
     utensil: string;
     imageSrc: string;
     imageAlt: string;
+    tag: string;
+    status: string;
   };
 
   // Set state to manage Modal
