@@ -33,9 +33,8 @@ export function Footer() {
             <div className='flex flex-col items-center justify-between gap-6 sm:flex-row'>
               <div className='flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm font-medium text-zinc-800 dark:text-zinc-200'>
                 <FooterNavLink to='/'>Portfolio</FooterNavLink>
-                <FooterNavLink to='/about'>About</FooterNavLink>
-                <FooterNavLink to='/active'>In-progress</FooterNavLink>
-                <FooterNavLink to='/contact'>Contact</FooterNavLink>
+                <FooterNavLink to='/contact'>Request</FooterNavLink>
+                <FooterNavLink to='/about'>About Me</FooterNavLink>
               </div>
               <p className='text-sm text-zinc-400 dark:text-zinc-500'>
                 &copy; {new Date().getFullYear()} Stephanie Reagan. All rights
