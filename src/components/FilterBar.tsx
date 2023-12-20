@@ -96,7 +96,7 @@ const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange }) => {
                     }`}
                   >
                     {item.icon}
-                    <span className='text-xs'>{item.label}</span>
+                    <span className='text-xs pt-1'>{item.label}</span>
                   </div>
                 ))}
               </div>
