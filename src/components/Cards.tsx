@@ -1,40 +1,40 @@
-// import { PRODUCTS } from '../product-list';
+//== react, react-router-dom, Auth0 ==//
 import { useState } from 'react';
-import { PRODUCTS } from '../art-project-list';
-import ModalWithImage from './ModalWithImage';
+
+//== TSX Components, Functions ==//
 import { Container } from './Container';
 import SearchNotFound from './SearchNotFound';
+import ModalWithImage from './ModalWithImage';
+
+import { PRODUCTS } from '../art-project-list';
+import { FilterIconData, Product } from '../types';
 
 const products = PRODUCTS;
 
-const Cards: React.FC<{ searchTerm: string }> = ({ searchTerm }) => {
-  // Define the shape of data for product
-  // DEV -- might want to declare this in the art-projects-list.ts component !!!!
-  // TODO -- move this to the art-projects-list.ts component or to a util file
-  type Product = {
-    id: number;
-    name: string;
-    href: string;
-    price: string;
-    description: string;
-    type: string;
-    medium: string;
-    utensil: string;
-    imageSrc: string;
-    imageAlt: string;
-    tag: string;
-    status: string;
-  };
-
+const Cards: React.FC<{ filter: FilterIconData }> = ({ filter }) => {
   // Set state to manage Modal
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const filteredProducts = products.filter(
-    (product) =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.description.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  let filteredProducts = products;
+
+  if (filter.filterType !== 'none') {
+    filteredProducts = products.filter((product) => {
+      if (filter.filterType === 'type') {
+        return product.type.toLowerCase() === filter.filterValue;
+      }
+      if (filter.filterType === 'tag') {
+        return product.tag.toLowerCase() === filter.filterValue;
+      }
+      return true;
+    });
+  }
+
+  // const filteredProducts = products.filter(
+  //   (product) =>
+  //     product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  //     product.description.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
 
   const handleCardClick = (product: Product): void => {
     document.body.classList.add('overflow-hidden');

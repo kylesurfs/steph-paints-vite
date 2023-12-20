@@ -4,7 +4,7 @@ export default function About() {
   return (
     <>
       <div className='dark:bg-zinc-900'>
-        <Container className=' dark:bg-zinc-900 py-8'>
+        <Container className=' dark:bg-zinc-900 py-8 flex flex-1'>
           <div className='grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-1 dark:bg-zinc-900'>
             <div className='lg:pl-20'>
               <div className='max-w-xs px-2.5 lg:max-w-none'>

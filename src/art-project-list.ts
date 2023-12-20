@@ -78,7 +78,7 @@ export const PRODUCTS = [
     imageSrc:
       'src/images/remi.png',
     imageAlt: 'Digital painting of our dog, Remi, on the iPad using Procreate.',
-    tag: 'Animal',
+    tag: 'Animals',
     status: 'Completed',
   },
   {
@@ -110,7 +110,7 @@ export const PRODUCTS = [
     imageSrc:
       'src/images/dog.png',
     imageAlt: 'Digital painting of a dog, printed on a canvas, and painted over.',
-    tag: 'Animal',
+    tag: 'Animals',
     status: 'Completed',
   },
   {
@@ -126,7 +126,7 @@ export const PRODUCTS = [
     imageSrc:
       'src/images/shannon_dog.png',
     imageAlt: 'Painting of the late Mr. Lincoln with a ball.',
-    tag: 'Animal',
+    tag: 'Animals',
     status: 'Completed',
   },
   {
