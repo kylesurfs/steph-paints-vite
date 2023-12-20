@@ -1,3 +1,6 @@
+//== react, react-router-dom, Auth0 ==//
+import { useState } from 'react';
+
 //== TSX Components, Functions ==//
 import { Container } from './Container';
 
@@ -67,7 +70,10 @@ interface FilterBarProps {
 }
 
 const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange }) => {
+  const [activeFilter, setActiveFilter] = useState<string>('none');
+
   const handleFilterClick = (item: FilterIconData) => {
+    setActiveFilter(item.filterValue);
     onFilterChange(item);
   };
 
@@ -82,7 +88,12 @@ const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange }) => {
                   <div
                     key={index}
                     onClick={() => handleFilterClick(item)}
-                    className='flex flex-col items-center text-gray-500 hover:text-black active:text-black dark:text-gray-400 hover:dark:text-white active:dark:text-white transition border-b border-transparent hover:border-b hover:border-gray-300 active:border-b active:border-gray-300 pb-1'
+                    className={`flex flex-col items-center hover:text-black hover:dark:text-white transition border-b border-transparent hover:border-b hover:border-gray-300 active:border-b active:border-gray-300 pb-1
+                    ${
+                      activeFilter === item.filterValue
+                        ? 'text-black dark:text-white border-b border-gray-300'
+                        : 'text-gray-500 dark:text-gray-400 '
+                    }`}
                   >
                     {item.icon}
                     <span className='text-xs'>{item.label}</span>
