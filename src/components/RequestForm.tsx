@@ -23,6 +23,11 @@ type FormErrors = {
 export default function RequestForm() {
   const navigate = useNavigate();
 
+  const handleCancelForm = () => {
+    navigate('/');
+    window.scrollTo(0, 0); // Scroll to the top of the page
+  };
+
   //-- State mgmt --//
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState<FormData>({
@@ -322,7 +327,8 @@ export default function RequestForm() {
         <div className='mt-6 flex items-center justify-end gap-x-6'>
           <button
             type='button'
-            onClick={() => navigate('/')}
+            // onClick={() => navigate('/')}
+            onClick={handleCancelForm}
             className='text-sm font-semibold leading-6 text-gray-900 dark:text-white'
           >
             Cancel

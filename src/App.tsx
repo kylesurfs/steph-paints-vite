@@ -4,24 +4,44 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import { ThemeProvider } from './components/ThemeToggle';
-import { Header } from './components/Header';
-import { Footer } from './components/Footer';
-// import { YourContextProvider } from './context/YourContext';
+import NotFoundPage from './pages/NotFoundPage';
+import Layout from './pages/Layout';
+// import { ContextProvider } from './context/MyContext';
 
 const App: React.FC = () => {
   return (
     <ThemeProvider>
       <Router>
-        {/* <YourContextProvider> */}
-        <Header />
+        {/* <ContextProvider> */}
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/about' element={<About />} />
+          <Route
+            path='/'
+            element={
+              <Layout>
+                <Home />
+              </Layout>
+            }
+          />
+          <Route
+            path='/about'
+            element={
+              <Layout>
+                <About />
+              </Layout>
+            }
+          />
           {/* <Route path='/active' element={<ActiveProjects />} /> */}
-          <Route path='/contact' element={<Contact />} />
+          <Route
+            path='/contact'
+            element={
+              <Layout>
+                <Contact />
+              </Layout>
+            }
+          />
+          <Route path='*' element={<NotFoundPage />} />
         </Routes>
-        {/* </YourContextProvider> */}
-        <Footer />
+        {/* </ContextProvider> */}
       </Router>
     </ThemeProvider>
   );

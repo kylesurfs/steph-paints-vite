@@ -67,21 +67,22 @@ const Cards: React.FC<{
                       className='h-full w-full object-cover object-center sm:h-full sm:w-full'
                     />
                   </div>
-                  <div className='flex flex-1 flex-col space-y-2 p-4'>
+                  <div className='flex flex-1 flex-col space-y-2 p-4 justify-between'>
                     <h3 className='text-sm font-medium text-gray-900 dark:text-gray-100'>
                       <a href={product.href}>
                         <span aria-hidden='true' className='absolute inset-0' />
                         {product.name}
                       </a>
                     </h3>
-                    <p className='text-sm text-gray-500 dark:text-gray-400'>
+                    <p className='text-sm text-gray-500 dark:text-gray-400 flex-1'>
                       {product.description}
                     </p>
-                    <div className='flex items-center justify-start space-x-2'>
-                      <p className='text-sm text-black dark:text-gray-400 bg-white dark:bg-zinc-900 border border-b-2 dark:border-gray-500 rounded-md px-6 mr-2'>
+                    {/* DEV -- TODO: move these to align at the bottom of card */}
+                    <div className='flex items-center space-x-2'>
+                      <p className='text-sm text-black dark:text-gray-400 bg-white dark:bg-zinc-900 border border-b-1 border-gray-700 dark:border-gray-300 rounded-md px-6 mr-2'>
                         {product.type}
                       </p>
-                      <p className='text-sm text-black dark:text-gray-400 bg-white dark:bg-zinc-900 border border-b-2 dark:border-gray-500 rounded-md px-6 mr-2'>
+                      <p className='text-sm text-black dark:text-gray-400 bg-white dark:bg-zinc-900 border border-b-1 border-gray-700 dark:border-gray-300 rounded-md px-6 mr-2'>
                         {product.medium}
                       </p>
                     </div>

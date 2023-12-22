@@ -1,7 +1,7 @@
 'use client';
 
 //-- React, React Router imports --//
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
@@ -193,29 +193,12 @@ function Avatar({
 }
 
 export function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
-
   const location = useLocation();
   let isHomePage = location.pathname === '/';
 
   let headerRef = useRef<React.ElementRef<'div'>>(null);
   let avatarRef = useRef<React.ElementRef<'div'>>(null);
   let isInitial = useRef(true);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // Set state based on scroll position
-      setIsScrolled(window.scrollY > 178); // This seems to be the optimal spot to change bg
-    };
-
-    // Add scroll event listener
-    window.addEventListener('scroll', handleScroll);
-
-    // Clean up the event listener
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
   useEffect(() => {
     let downDelay = avatarRef.current?.offsetTop ?? 0;
@@ -320,9 +303,7 @@ export function Header() {
   return (
     <>
       <header
-        className={`pointer-events-none relative z-50 flex flex-none flex-col ${
-          isScrolled ? '' : 'dark:bg-zinc-900'
-        }`}
+        className='pointer-events-none relative z-50 flex flex-none flex-col'
         style={{
           height: 'var(--header-height)',
           marginBottom: 'var(--header-mb)',

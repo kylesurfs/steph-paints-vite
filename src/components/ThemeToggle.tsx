@@ -33,9 +33,14 @@ function MoonIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 }
 
 // Create a context for the theme.
-const ThemeContext = createContext({
-  theme: 'light',
-  setTheme: (theme: string) => {},
+interface ThemeContextType {
+  theme: string;
+  setTheme: (theme: string) => void;
+}
+
+const ThemeContext = createContext<ThemeContextType>({
+  theme: 'light', // default value
+  setTheme: () => {}, // empty implementation, but it's okay for default value
 });
 
 export const useTheme = () => useContext(ThemeContext);
