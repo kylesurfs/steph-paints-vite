@@ -1,7 +1,7 @@
 'use client';
 
 //-- React, React Router imports --//
-import { Fragment, useEffect, useRef } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
@@ -14,6 +14,11 @@ import { Container } from './Container';
 import avatarImage from '../images/stephAvatar.png';
 import ThemeToggle from './ThemeToggle';
 import { ChevronDownIcon, CloseIcon } from './UI/icons';
+
+// Make sure navigation returns user to top of page
+const handleClick = () => {
+  window.scrollTo(0, 0); // Scroll to the top of the page
+};
 
 function MobileNavItem({
   to,
@@ -111,6 +116,7 @@ function NavItem({
             ? 'text-teal-500 dark:text-teal-400'
             : 'hover:text-teal-500 dark:hover:text-teal-400'
         )}
+        onClick={handleClick} // returns user to top of window
       >
         {children}
         {isActive && (
@@ -127,7 +133,9 @@ function DesktopNavigation(props: React.ComponentPropsWithoutRef<'nav'>) {
       <ul className='flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10'>
         <NavItem to='/'>Portfolio</NavItem>
         <NavItem to='/contact'>Request</NavItem>
-        <NavItem to='/about'>About Me</NavItem>
+        <NavItem to='/about' className='whitespace-nowrap'>
+          About Me
+        </NavItem>
         {/* <NavItem to='/active' className='whitespace-nowrap'>
           In-Progress
         </NavItem> */}
@@ -185,12 +193,29 @@ function Avatar({
 }
 
 export function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
   const location = useLocation();
   let isHomePage = location.pathname === '/';
 
   let headerRef = useRef<React.ElementRef<'div'>>(null);
   let avatarRef = useRef<React.ElementRef<'div'>>(null);
   let isInitial = useRef(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Set state based on scroll position
+      setIsScrolled(window.scrollY > 178); // This seems to be the optimal spot to change bg
+    };
+
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
+
+    // Clean up the event listener
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     let downDelay = avatarRef.current?.offsetTop ?? 0;
@@ -295,7 +320,9 @@ export function Header() {
   return (
     <>
       <header
-        className='pointer-events-none relative z-50 flex flex-none flex-col dark:bg-zinc-900'
+        className={`pointer-events-none relative z-50 flex flex-none flex-col ${
+          isScrolled ? '' : 'dark:bg-zinc-900'
+        }`}
         style={{
           height: 'var(--header-height)',
           marginBottom: 'var(--header-mb)',

@@ -11,7 +11,9 @@ import { FilterIconData, Product } from '../types';
 
 const products = PRODUCTS;
 
-const Cards: React.FC<{ filter: FilterIconData }> = ({ filter }) => {
+const Cards: React.FC<{
+  filter: FilterIconData;
+}> = ({ filter }) => {
   // Set state to manage Modal
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -29,12 +31,6 @@ const Cards: React.FC<{ filter: FilterIconData }> = ({ filter }) => {
       return true;
     });
   }
-
-  // const filteredProducts = products.filter(
-  //   (product) =>
-  //     product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-  //     product.description.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
 
   const handleCardClick = (product: Product): void => {
     document.body.classList.add('overflow-hidden');

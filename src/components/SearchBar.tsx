@@ -17,8 +17,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 
   return (
     <Container>
-      <div className='mx-auto md:px-6 lg:px-8' style={{ maxWidth: '1300px' }}>
-        <div className='flex flex-col lg:flex-row items-center lg:space-x-4 space-y-4 lg:space-y-0 justify-center'>
+      <div className='mx-auto' style={{ maxWidth: '1300px' }}>
+        <div className='flex flex-col lg:flex-row space-y-4 lg:space-y-0'>
           <div className='w-full lg:flex-1'>
             <label htmlFor='search' className='sr-only'>
               Search

@@ -177,5 +177,21 @@ export const PRODUCTS = [
     tag: 'People',
     status: 'Completed',
   },
+  {
+    id: 12,
+    name: 'London',
+    href: '#',
+    price: '$0',
+    description:
+      'Colored painting of London the dog',
+    type: 'Painting',
+      medium: 'Canvas',
+    utensil: 'Watercolor',
+    imageSrc:
+      'src/images/london.png',
+    imageAlt: 'Colored painting of London the dog',
+    tag: 'Animals',
+    status: 'Completed',
+  },
   // More products...
 ];

@@ -31,3 +31,14 @@ export interface Product {
     | 'plants'
     | 'landscapes';
 };
+
+// For the ModalWithImage component
+export type ModalWithImageProps = {
+  isOpen?: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+  title?: string;
+  description?: string;
+  btnText?: string;
+  onBtnClick?: () => void;
+  imageURL?: string;
+};

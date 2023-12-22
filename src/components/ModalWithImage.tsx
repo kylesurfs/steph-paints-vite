@@ -1,16 +1,11 @@
+//== react, react-router-dom, Auth0 ==//
 import { Fragment, useEffect, useRef } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
-// import { useNavigate } from 'react-router-dom';
 
-type ModalWithImageProps = {
-  isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
-  title?: string;
-  description?: string;
-  btnText?: string;
-  onBtnClick: () => void;
-  imageURL: string;
-};
+//== NPM Components ==//
+import { Dialog, Transition } from '@headlessui/react';
+
+//== Environment Variables, TypeScript Interfaces, Data Objects ==//
+import { ModalWithImageProps } from '../types';
 
 export default function ModalWithImage({
   isOpen,
@@ -21,7 +16,6 @@ export default function ModalWithImage({
   onBtnClick,
   imageURL,
 }: ModalWithImageProps) {
-  // Try code to prevent auto-scrolling:
   // DEV -- w/o this the page auto-scrolls to the top when the modal opens
   const modalRef = useRef(null);
 
@@ -48,21 +42,22 @@ export default function ModalWithImage({
     }
   }, [isOpen]);
 
-  //   const [open, setOpen] = useState(true);
-  //   const navigate = useNavigate();
-
-  //   const submissionHandler = () => {
-  //     setOpen(false);
-  //     navigate('/');
-  //   };
-
-  //   const closeModal = () => {
-  //     setIsOpen(false);
-  //   };
+  // Call this function to close the modal and reset the body styles
+  const closeModal = () => {
+    setIsOpen(false); // This will set isOpen to false
+    if (onBtnClick) {
+      onBtnClick(); // Only call if onBtnClick is defined
+    }
+  };
 
   return (
     <Transition.Root show={isOpen} as={Fragment}>
-      <Dialog as='div' className='relative z-10' onClose={setIsOpen}>
+      <Dialog
+        as='div'
+        className='relative z-50'
+        // onClose={() => setIsOpen(false)}
+        onClose={closeModal}
+      >
         <Transition.Child
           as={Fragment}
           enter='ease-out duration-300'
@@ -91,7 +86,6 @@ export default function ModalWithImage({
                 className='relative transform overflow-hidden rounded-lg bg-white dark:bg-zinc-900 px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6'
               >
                 <div>
-                  {/* <div className='mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100'> */}
                   <div className='mx-auto flex items-center justify-center rounded-full'>
                     <img
                       src={imageURL}
