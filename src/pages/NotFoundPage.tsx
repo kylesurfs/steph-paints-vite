@@ -1,11 +1,17 @@
+//== react, react-router-dom, Auth0 ==//
 import { NavLink } from 'react-router-dom';
+
+//== TSX Components, Functions ==//
 import notFoundImage from '../images/notFoundImage.png';
 
+//== ***** ***** ***** Exported Component ***** ***** ***** ==//
 export default function NotFoundPage() {
+  //== Handlers ==//
   const handleClick = () => {
     window.scrollTo(0, 0); // Scroll to the top of the page
   };
 
+  //== ***** ***** ***** Component Return ***** ***** ***** ==//
   return (
     <>
       {/*

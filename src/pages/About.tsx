@@ -1,6 +1,9 @@
+//== TSX Components, Functions ==//
 import { Container } from '../components/Container';
 
+//== ***** ***** ***** Exported Component ***** ***** ***** ==//
 export default function About() {
+  //== ***** ***** ***** Component Return ***** ***** ***** ==//
   return (
     <>
       <div className='dark:bg-zinc-900'>

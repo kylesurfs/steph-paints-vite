@@ -1,5 +1,4 @@
-// const fkj: string = './images/fkj.png's
-
+//== ***** ***** ***** Exported Object ***** ***** ***** ==//
 export const PRODUCTS = [
    {
     id: 1,

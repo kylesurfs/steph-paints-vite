@@ -1,14 +1,19 @@
+//== react, react-router-dom, Auth0 ==//
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+//== TSX Components, Functions ==//
+import Layout from './pages/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import { ThemeProvider } from './components/ThemeToggle';
 import NotFoundPage from './pages/NotFoundPage';
-import Layout from './pages/Layout';
+import { ThemeProvider } from './components/ThemeToggle';
 // import { ContextProvider } from './context/MyContext';
 
+//== ***** ***** ***** Exported Component ***** ***** ***** ==//
 const App: React.FC = () => {
+  //== ***** ***** ***** Component Return ***** ***** ***** ==//
   return (
     <ThemeProvider>
       <Router>
