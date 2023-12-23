@@ -1,11 +1,18 @@
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
+//== react, react-router-dom, Auth0 ==//
 import { useState } from 'react';
+
+//== TSX Components, Functions ==//
 import { Container } from './Container';
 
+//== Icons ==//
+import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
+
+//== Environment Variables, TypeScript Interfaces, Data Objects ==//
 type SearchBarProps = {
   onSearch: (term: string) => void; // Callback to pass the search term to the parent component
 };
 
+//== ***** ***** ***** Exported Component ***** ***** ***** ==//
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
 

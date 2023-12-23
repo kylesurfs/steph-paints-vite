@@ -1,11 +1,16 @@
+//== react, react-router-dom, Auth0 ==//
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { PhotoIcon } from '@heroicons/react/24/solid';
+
+//== TSX Components, Functions ==//
 import ConfirmationModal from './ConfirmationModal';
 import ErrorMessage from './UI/ErrorMessage';
 import { Container } from './Container';
 
-//-- Types --//
+//== Icons ==//
+import { PhotoIcon } from '@heroicons/react/24/solid';
+
+//== Environment Variables, TypeScript Interfaces, Data Objects ==//
 type FormData = {
   about: string;
   firstName: string;
@@ -21,7 +26,7 @@ type FormErrors = {
   email?: string;
 };
 
-//-- Exported component --//
+//== ***** ***** ***** Exported Component ***** ***** ***** ==//
 export default function RequestForm() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -229,12 +234,6 @@ export default function RequestForm() {
                               title='File too large.'
                               message='Try uploading a file < 10MB.'
                             />
-
-                            // <div className='mt-4 flex leading-6 text-gray-600 dark:text-zinc-400 mx-1'>
-                            //   <span className='text-red-200 text-sm bg-red-800 rounded-lg border border-red-800 px-2 font-semibold'>
-                            //     {fileUploadError}
-                            //   </span>
-                            // </div>
                           )}
                         </div>
                         {!fileUploadError && formData.file && (

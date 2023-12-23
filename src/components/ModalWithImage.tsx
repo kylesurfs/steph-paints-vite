@@ -7,6 +7,7 @@ import { Dialog, Transition } from '@headlessui/react';
 //== Environment Variables, TypeScript Interfaces, Data Objects ==//
 import { ModalWithImageProps } from '../types';
 
+//== ***** ***** ***** Exported Component ***** ***** ***** ==//
 export default function ModalWithImage({
   isOpen,
   setIsOpen,

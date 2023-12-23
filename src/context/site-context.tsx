@@ -1,6 +1,7 @@
-// ModalContext.tsx
+//== react, react-router-dom, Auth0 ==//
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 
+//== Environment Variables, TypeScript Interfaces, Data Objects ==//
 interface ModalContextType {
   isModalOpen: boolean;
   toggleModal: () => void;
@@ -8,6 +9,7 @@ interface ModalContextType {
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
+//== ***** ***** ***** Exports ***** ***** ***** ==//
 export const useModalContext = () => {
   const context = useContext(ModalContext);
   if (!context) {
