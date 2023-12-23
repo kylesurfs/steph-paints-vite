@@ -1,14 +1,17 @@
-import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
+//== NPM Functions ==//
 import clsx from 'clsx';
 
-// Define the props type for the component
+//== Icons ==//
+import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
+
+//== Environment Variables, TypeScript Interfaces, Data Objects ==//
 type ErrorMessageProps = {
   className?: string;
   title: string;
   message: string;
 };
 
-// Use the defined type for the component's props
+//== ***** ***** ***** Exported Component ***** ***** ***** ==//
 const ErrorMessage: React.FC<ErrorMessageProps> = ({
   className,
   title,

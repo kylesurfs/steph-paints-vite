@@ -6,11 +6,13 @@ import { Container } from './Container';
 import SearchNotFound from './SearchNotFound';
 import ModalWithImage from './ModalWithImage';
 
+//== Environment Variables, TypeScript Interfaces, Data Objects ==//
 import { PRODUCTS } from '../art-project-list';
 import { FilterIconData, Product } from '../types';
 
 const products = PRODUCTS;
 
+//== ***** ***** ***** Exported Component ***** ***** ***** ==//
 const Cards: React.FC<{
   filter: FilterIconData;
 }> = ({ filter }) => {
@@ -77,7 +79,6 @@ const Cards: React.FC<{
                     <p className='text-sm text-gray-500 dark:text-gray-400 flex-1'>
                       {product.description}
                     </p>
-                    {/* DEV -- TODO: move these to align at the bottom of card */}
                     <div className='flex items-center space-x-2'>
                       <p className='text-sm text-black dark:text-gray-400 bg-white dark:bg-zinc-900 border border-b-1 border-gray-700 dark:border-gray-300 rounded-md px-6 mr-2'>
                         {product.type}

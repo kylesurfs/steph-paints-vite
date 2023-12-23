@@ -1,7 +1,11 @@
+//== react, react-router-dom, Auth0 ==//
 import { Fragment } from 'react';
+
+//== Icons ==//
 import { Dialog, Transition } from '@headlessui/react';
 import { CheckIcon } from '@heroicons/react/24/outline';
 
+//== Environment Variables, TypeScript Interfaces, Data Objects ==//
 type ConfirmationModalProps = {
   title?: string;
   description?: string;
@@ -11,6 +15,7 @@ type ConfirmationModalProps = {
   onBtnClick: () => void;
 };
 
+//== ***** ***** ***** Exported Component ***** ***** ***** ==//
 export default function ConfirmationModal({
   title,
   description,
