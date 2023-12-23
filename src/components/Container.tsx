@@ -1,6 +1,10 @@
+//== react, react-router-dom, Auth0 ==//
 import { forwardRef } from 'react';
+
+//== Utility Libraries ==//
 import clsx from 'clsx';
 
+//== ***** ***** ***** Exported Components ***** ***** ***** ==//
 export const ContainerOuter = forwardRef<
   React.ElementRef<'div'>,
   React.ComponentPropsWithoutRef<'div'>

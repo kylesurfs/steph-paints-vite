@@ -1,4 +1,4 @@
-//== NPM Functions ==//
+//== Utility Libraries ==//
 import clsx from 'clsx';
 
 //== Icons ==//

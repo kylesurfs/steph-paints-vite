@@ -69,6 +69,7 @@ interface FilterBarProps {
   onFilterChange: (newFilter: FilterIconData) => void;
 }
 
+//== ***** ***** ***** Exported Component ***** ***** ***** ==//
 const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange }) => {
   const [activeFilter, setActiveFilter] = useState<string>('none');
 

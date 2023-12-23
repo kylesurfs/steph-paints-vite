@@ -1,5 +1,8 @@
-import { ContainerInner, ContainerOuter } from './Container';
+//== react, react-router-dom, Auth0 ==//
 import { NavLink } from 'react-router-dom';
+
+//== TSX Components, Functions ==//
+import { ContainerInner, ContainerOuter } from './Container';
 
 function FooterNavLink({
   to,
@@ -24,6 +27,7 @@ function FooterNavLink({
   );
 }
 
+//== ***** ***** ***** Exported Component ***** ***** ***** ==//
 export function Footer() {
   return (
     <footer className='pt-10 flex-none dark:bg-zinc-900'>

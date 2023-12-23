@@ -7,6 +7,8 @@ import { NavLink } from 'react-router-dom';
 
 //-- Library imports --//
 import { Popover, Transition } from '@headlessui/react';
+
+//== Utility Libraries ==//
 import clsx from 'clsx';
 
 //-- Component imports --//
@@ -192,6 +194,7 @@ function Avatar({
   );
 }
 
+//== ***** ***** ***** Exported Component ***** ***** ***** ==//
 export function Header() {
   const location = useLocation();
   let isHomePage = location.pathname === '/';

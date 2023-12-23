@@ -1,5 +1,7 @@
+//== TSX Components, Functions ==//
 import { Container } from './Container';
 
+//== ***** ***** ***** Exported Component ***** ***** ***** ==//
 export default function Logo() {
   return (
     <>
