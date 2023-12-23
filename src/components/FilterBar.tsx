@@ -81,7 +81,7 @@ const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange }) => {
     <Container>
       <div className='mx-auto md:px-6 lg:px-8' style={{ maxWidth: '1300px' }}>
         <div className=' items-center justify-between lg:space-x-4 space-y-4 lg:space-y-0 '>
-          <div className='w-full lg:w-auto'>
+          <div className='w-full lg:max-w-4xl mx-auto'>
             <div className='bg-white shadow rounded-lg dark:bg-zinc-800 mt-2 overflow-x-scroll'>
               <div className='flex whitespace-nowrap justify-between items-center px-6 py-2 space-x-4 md:space-x-8 lg:space-x-12'>
                 {iconData.map((item, index) => (

@@ -4,5 +4,5 @@
 
 .dark {
     @apply bg-zinc-900;
-    /* dark background */
+    /* dark background on overscroll and stuff */
 }
