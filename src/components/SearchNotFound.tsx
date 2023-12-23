@@ -1,5 +1,5 @@
 import { Container } from './Container';
-import ErrorMessage from './ErrorMessage';
+import ErrorMessage from './UI/ErrorMessage';
 
 export default function SearchNotFound() {
   return (

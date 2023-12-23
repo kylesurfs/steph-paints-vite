@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { PhotoIcon } from '@heroicons/react/24/solid';
 import ConfirmationModal from './ConfirmationModal';
-import ErrorMessage from './ErrorMessage';
+import ErrorMessage from './UI/ErrorMessage';
 import { Container } from './Container';
 
 //-- Types --//
