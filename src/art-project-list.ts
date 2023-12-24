@@ -1,3 +1,5 @@
+import dogImage from '/src/images/dog.jpeg'
+
 //== ***** ***** ***** Exported Object ***** ***** ***** ==//
 export const PRODUCTS = [
    {
@@ -107,7 +109,7 @@ export const PRODUCTS = [
     medium: 'Canvas',
     utensil: 'Procreate + Acrylic',
     imageSrc:
-      'src/images/dog.png',
+      'src/images/dog.jpeg',
     imageAlt: 'Digital painting of a dog, printed on a canvas, and painted over.',
     tag: 'Animals',
     status: 'Completed',
@@ -123,7 +125,7 @@ export const PRODUCTS = [
     medium: 'Canvas',
     utensil: 'Acrylic',
     imageSrc:
-      'src/images/shannon_dog.png',
+      'src/images/shannon_dog.jpeg',
     imageAlt: 'Painting of the late Mr. Lincoln with a ball.',
     tag: 'Animals',
     status: 'Completed',
@@ -189,6 +191,23 @@ export const PRODUCTS = [
     imageSrc:
       'src/images/london.png',
     imageAlt: 'Colored painting of London the dog',
+    tag: 'Animals',
+    status: 'Completed',
+  },
+  // Practice
+  {
+    id: 7,
+    name: 'Dog',
+    href: '#',
+    price: '$0',
+    description:
+      'This was a combination of digital and physical art. I drew this dog on the iPad using Procreate. Then I printed it onyo a canvas and painted over it to make it more textured.',
+    type: 'Painting',
+    medium: 'Canvas',
+    utensil: 'Procreate + Acrylic',
+    imageSrc:
+      dogImage,
+    imageAlt: 'Digital painting of a dog, printed on a canvas, and painted over.',
     tag: 'Animals',
     status: 'Completed',
   },
