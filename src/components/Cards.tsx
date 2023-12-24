@@ -16,6 +16,7 @@ const products = PRODUCTS;
 const Cards: React.FC<{
   filter: FilterIconData;
 }> = ({ filter }) => {
+  //== React State, Custom Hooks ==//
   // Set state to manage Modal
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -34,6 +35,7 @@ const Cards: React.FC<{
     });
   }
 
+  //== Handlers ==//
   const handleCardClick = (product: Product): void => {
     document.body.classList.add('overflow-hidden');
     document.body.classList.add('position-inherit');
@@ -46,6 +48,7 @@ const Cards: React.FC<{
     setIsModalOpen(false);
   };
 
+  //== ***** ***** ***** Component Return ***** ***** ***** ==//
   return (
     <>
       <div className='bg-white dark:bg-zinc-900'>
@@ -62,7 +65,7 @@ const Cards: React.FC<{
                     handleCardClick(product);
                   }}
                 >
-                  <div className='aspect-h-4 aspect-w-3 bg-gray-200 sm:aspect-none group-hover:opacity-75 sm:h-96'>
+                  <div className='aspect-h-4 aspect-w-3 bg-gray-200 sm:aspect-none group-hover:opacity-75 h-32 md:h-96'>
                     <img
                       src={product.imageSrc}
                       alt={product.imageAlt}
