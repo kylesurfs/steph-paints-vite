@@ -56,7 +56,7 @@ const Cards: React.FC<{
           <div className='mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8'>
             <h2 className='sr-only'>Products</h2>
 
-            <div className='grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 xl:grid-cols-3 lg:gap-x-8'>
+            <div className='grid grid-cols-1 gap-y-4 md:grid-cols-2 sm:gap-x-6 sm:gap-y-10 xl:grid-cols-3 lg:gap-x-8'>
               {filteredProducts.map((product) => (
                 <div
                   key={product.id}
@@ -65,7 +65,7 @@ const Cards: React.FC<{
                     handleCardClick(product);
                   }}
                 >
-                  <div className='aspect-h-4 aspect-w-3 bg-gray-200 sm:aspect-none group-hover:opacity-75 h-32 md:h-96'>
+                  <div className='aspect-h-3 sm:aspect-h-4 aspect-w-3 bg-gray-200 sm:aspect-none group-hover:opacity-75 h-96 md:h-96'>
                     <img
                       src={product.imageSrc}
                       alt={product.imageAlt}
