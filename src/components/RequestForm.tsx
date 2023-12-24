@@ -28,20 +28,10 @@ type FormErrors = {
 
 //== ***** ***** ***** Exported Component ***** ***** ***** ==//
 export default function RequestForm() {
+  //== React State, Custom Hooks ==//
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(() => {
-    // If the pathname changes, scroll to the top of the page
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
-
-  const handleCancelForm = () => {
-    navigate('/');
-    window.scrollTo(0, 0); // Scroll to the top of the page
-  };
-
-  //-- State mgmt --//
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     about: '',
@@ -61,10 +51,17 @@ export default function RequestForm() {
   });
   const [fileUploadError, setFileUploadError] = useState<string | null>(null);
 
-  // Type guard to check if a key is a keyof FormErrors
-  function isKeyOfFormErrors(key: any): key is keyof FormErrors {
-    return key in formErrors;
-  }
+  //== Side Effects ==//
+  useEffect(() => {
+    // If the pathname changes, scroll to the top of the page
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  //== Handlers ==//
+  const handleCancelForm = () => {
+    navigate('/');
+    window.scrollTo(0, 0); // Scroll to the top of the page
+  };
 
   //-- Input change handlers --//
   const handleInputChange = (
@@ -77,6 +74,11 @@ export default function RequestForm() {
       ...displayValues,
       [name]: value,
     });
+
+    // Type guard to check if a key is a keyof FormErrors
+    function isKeyOfFormErrors(key: any): key is keyof FormErrors {
+      return key in formErrors;
+    }
 
     // Check if the name is a valid key of FormErrors and if there's an error for this field
     if (isKeyOfFormErrors(name) && formErrors[name]) {
@@ -176,11 +178,11 @@ export default function RequestForm() {
                     <textarea
                       id='about'
                       name='about'
-                      rows={3}
-                      className={`block w-full max-w-2xl rounded-md border-0 py-1.5 dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 
+                      rows={9}
+                      className={`block w-full max-w-2xl rounded-md border-0 py-1.5 dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-teal-600 text-sm sm:leading-6 
                     ${
                       formErrors.about
-                        ? ' placeholder:text-red-600 dark:placeholder:text-red-400 font-semibold text-sm'
+                        ? ' placeholder:text-red-600 dark:placeholder:text-red-400 text-sm ring-red-400'
                         : 'text-gray-900 dark:text-zinc-400 placeholder:text-gray-400'
                     }`}
                       value={displayValues.about}
@@ -209,10 +211,10 @@ export default function RequestForm() {
                           className='mx-auto h-12 w-12 text-gray-300 dark:text-zinc-400'
                           aria-hidden='true'
                         />
-                        <div className='mt-4 flex text-sm leading-6 text-gray-600 dark:text-zinc-400 mx-12'>
+                        <div className='mt-4 flex flex-col md:flex-row text-sm leading-6 text-gray-600 dark:text-zinc-400 mx-12'>
                           <label
                             htmlFor='file-upload'
-                            className='relative cursor-pointer rounded-md bg-white dark:bg-zinc-800 font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500'
+                            className='relative cursor-pointer rounded-md bg-white dark:bg-zinc-800 font-semibold text-teal-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-teal-600 focus-within:ring-offset-2 hover:text-teal-500'
                           >
                             <span>Upload a file</span>
                             <input
@@ -225,7 +227,7 @@ export default function RequestForm() {
                           </label>
                           <p className='pl-1'>or drag and drop</p>
                         </div>
-                        <p className='text-xs leading-5 text-gray-600 dark:text-zinc-400'>
+                        <p className='text-xs font-light pt-2 leading-5 text-gray-600 dark:text-zinc-400'>
                           PNG, JPG, GIF up to 10MB
                         </p>
                         <div className='text-left'>
@@ -276,10 +278,10 @@ export default function RequestForm() {
                       name='firstName'
                       id='first-name'
                       autoComplete='given-name'
-                      className={`block w-full rounded-md border-0 py-1.5 dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6 
+                      className={`block w-full rounded-md border-0 py-1.5 dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-teal-600 sm:max-w-md sm:text-sm sm:leading-6 
                     ${
                       formErrors.firstName
-                        ? ' placeholder:text-red-600 dark:placeholder:text-red-400 font-semibold text-sm'
+                        ? ' placeholder:text-red-600 dark:placeholder:text-red-400 text-sm ring-red-400'
                         : 'text-gray-900 dark:text-zinc-400 placeholder:text-gray-400'
                     }`}
                       value={displayValues.firstName}
@@ -302,10 +304,10 @@ export default function RequestForm() {
                       name='lastName'
                       id='last-name'
                       autoComplete='family-name'
-                      className={`block w-full rounded-md border-0 py-1.5 dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6 
+                      className={`block w-full rounded-md border-0 py-1.5 dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-teal-600 sm:max-w-md sm:text-sm sm:leading-6 
                     ${
                       formErrors.lastName
-                        ? ' placeholder:text-red-600 dark:placeholder:text-red-400 font-semibold text-sm'
+                        ? ' placeholder:text-red-600 dark:placeholder:text-red-400 text-sm ring-red-400'
                         : 'text-gray-900 dark:text-zinc-400 placeholder:text-gray-400'
                     }`}
                       value={displayValues.lastName}
@@ -328,10 +330,10 @@ export default function RequestForm() {
                       name='email'
                       type='email'
                       autoComplete='email'
-                      className={`block w-full rounded-md border-0 py-1.5 dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6 
+                      className={`block w-full rounded-md border-0 py-1.5 dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-teal-600 sm:max-w-md sm:text-sm sm:leading-6 
                     ${
                       formErrors.email
-                        ? ' placeholder:text-red-600 dark:placeholder:text-red-400 font-semibold text-sm'
+                        ? ' placeholder:text-red-600 dark:placeholder:text-red-400 text-sm ring-red-400'
                         : 'text-gray-900 dark:text-zinc-400 placeholder:text-gray-400'
                     }`}
                       value={displayValues.email}
@@ -356,7 +358,7 @@ export default function RequestForm() {
             <button
               type='submit'
               // onClick= Display modal saying "Your request has been successfully submitted."
-              className='inline-flex justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+              className='inline-flex justify-center rounded-md bg-teal-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600'
             >
               Submit request
             </button>
