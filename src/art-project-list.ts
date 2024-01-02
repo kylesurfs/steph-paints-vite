@@ -195,21 +195,5 @@ export const PRODUCTS = [
     status: 'Completed',
   },
   // Practice
-  {
-    id: 7,
-    name: 'Dog',
-    href: '#',
-    price: '$0',
-    description:
-      'This was a combination of digital and physical art. I drew this dog on the iPad using Procreate. Then I printed it onyo a canvas and painted over it to make it more textured.',
-    type: 'Painting',
-    medium: 'Canvas',
-    utensil: 'Procreate + Acrylic',
-    imageSrc:
-      dogImage,
-    imageAlt: 'Digital painting of a dog, printed on a canvas, and painted over.',
-    tag: 'Animals',
-    status: 'Completed',
-  },
   // More products...
 ];

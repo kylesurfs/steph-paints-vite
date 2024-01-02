@@ -10,6 +10,9 @@ import { Container } from './Container';
 //== Icons ==//
 import { PhotoIcon } from '@heroicons/react/24/solid';
 
+//-- NPM Functions --//
+// import axios from 'axios';
+
 //== Environment Variables, TypeScript Interfaces, Data Objects ==//
 type FormData = {
   about: string;
@@ -93,7 +96,6 @@ export default function RequestForm() {
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (file && file.size > 10 * 1024 * 1024) {
-      // DEV -- need to increase this limit so steph gets high res photos to work form
       // 10MB limit
       setFileUploadError('Try uploading a file < 10MB.');
     } else {
@@ -122,13 +124,60 @@ export default function RequestForm() {
 
   //-- Submission handling --//
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     event.preventDefault();
     if (!validateForm()) return;
+
+    // DEV -- BEFORE AXIOS
     setFormData(displayValues);
 
     console.log(displayValues); // DEV -- Replace this with submission logic
     setIsModalOpen(true);
+    // DEV -- THE ABOVE WAS ORIGINAL CODE BEFORE AXIOS
+
+    // DEV -- Trying Axios code to PUT object into S3
+    //   const formData = new FormData();
+    //   formData.append('about', displayValues.about);
+    //   formData.append('firstName', displayValues.firstName);
+    //   formData.append('lastName', displayValues.lastName);
+    //   formData.append('email', displayValues.email);
+
+    //   if (displayValues.file) {
+    //     formData.append('file-upload', displayValues.file);
+    //   }
+
+    //   try {
+    //     const response = await axios.post('/api/posts', formData, {
+    //       headers: {
+    //         'Content-Type': 'multipart/form-data',
+    //       },
+    //     });
+
+    //     if (response.status === 201) {
+    //       // Handle success (e.g., show confirmation, clear form)
+    //       setIsModalOpen(true);
+    //       // Reset form and display values
+    //       setFormData({
+    //         about: '',
+    //         firstName: '',
+    //         lastName: '',
+    //         email: '',
+    //         file: null,
+    //       });
+    //       setDisplayValues({
+    //         about: '',
+    //         firstName: '',
+    //         lastName: '',
+    //         email: '',
+    //         file: null,
+    //       });
+    //     }
+    //   } catch (error) {
+    //     // Handle error (e.g., show error message)
+    //     console.error('There was an error uploading the file:', error);
+    //   }
   };
 
   //-- Modal handling --//
@@ -217,12 +266,14 @@ export default function RequestForm() {
                             className='relative cursor-pointer rounded-md bg-white dark:bg-zinc-800 font-semibold text-teal-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-teal-600 focus-within:ring-offset-2 hover:text-teal-500'
                           >
                             <span>Upload a file</span>
+                            {/* TODO -- THIS INPUT WILL USE THE EXPRESS SERVER TO SEND TO S3 */}
                             <input
                               id='file-upload'
                               name='file-upload'
                               type='file'
                               className='sr-only'
                               onChange={handleFileChange}
+                              accept='image/*'
                             />
                           </label>
                           <p className='pl-1'>or drag and drop</p>
