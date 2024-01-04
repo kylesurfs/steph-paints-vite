@@ -42,3 +42,13 @@ export type ModalWithImageProps = {
   onBtnClick?: () => void;
   imageURL?: string;
 };
+
+// For customer request form
+export interface CustomerRequests {
+  _id: string | null | undefined;
+  about: string,
+  firstName: string,
+  lastName: string,
+  email: string,
+  filePath?: string,
+}

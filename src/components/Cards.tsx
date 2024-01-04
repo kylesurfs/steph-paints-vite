@@ -1,10 +1,13 @@
 //== react, react-router-dom, Auth0 ==//
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 //== TSX Components, Functions ==//
 import { Container } from './Container';
 import SearchNotFound from './SearchNotFound';
 import ModalWithImage from './ModalWithImage';
+
+//-- NPM Components --//
+import S3 from 'react-aws-s3-typescript';
 
 //== Environment Variables, TypeScript Interfaces, Data Objects ==//
 import { PRODUCTS } from '../art-project-list';

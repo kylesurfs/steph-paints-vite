@@ -9,6 +9,7 @@ import { Container } from './Container';
 
 //== Icons ==//
 import { PhotoIcon } from '@heroicons/react/24/solid';
+import { useRequestsContext } from '../hooks/useRequestsContext';
 
 //-- NPM Functions --//
 // import axios from 'axios';
@@ -34,6 +35,7 @@ export default function RequestForm() {
   //== React State, Custom Hooks ==//
   const navigate = useNavigate();
   const location = useLocation();
+  const { dispatch } = useRequestsContext();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState<FormData>({
@@ -41,7 +43,7 @@ export default function RequestForm() {
     firstName: '',
     lastName: '',
     email: '',
-    file: null,
+    // file: null,
   });
   const [formErrors, setFormErrors] = useState<FormErrors>({});
   // Add a new state for display values, so they can be cleared if the ConfirmationModal is closed
@@ -50,7 +52,7 @@ export default function RequestForm() {
     firstName: '',
     lastName: '',
     email: '',
-    file: null,
+    // file: null,
   });
   const [fileUploadError, setFileUploadError] = useState<string | null>(null);
 
@@ -134,8 +136,29 @@ export default function RequestForm() {
     setFormData(displayValues);
 
     console.log(displayValues); // DEV -- Replace this with submission logic
+    console.log(JSON.stringify(displayValues));
+
+    // DEV -- (WIP) NetNinja-type POST handling
+    const response = await fetch('/api/posts', {
+      method: 'POST',
+      body: JSON.stringify(displayValues), // DEV -- not sure why this needs to be displayValues instead of formData, but formData doesn't work
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const json = await response.json();
+
+    if (!response.ok) {
+      setFormErrors(json.error);
+      console.log(formErrors);
+    }
+
+    if (response.ok) {
+      console.log('New submission added to db');
+      dispatch({ type: 'CREATE_REQUEST', payload: json });
+    }
+
     setIsModalOpen(true);
-    // DEV -- THE ABOVE WAS ORIGINAL CODE BEFORE AXIOS
 
     // DEV -- Trying Axios code to PUT object into S3
     //   const formData = new FormData();
