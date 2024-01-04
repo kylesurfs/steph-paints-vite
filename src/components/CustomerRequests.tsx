@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { Container } from './Container';
 import { useRequestsContext } from '../hooks/useRequestsContext';
+import { TrashIcon } from './UI/icons';
 
 //== TSX Components, Functions ==//
 
@@ -16,7 +17,7 @@ interface CustomerRequest {
 }
 
 //== ***** ***** ***** Exported Component ***** ***** ***** ==//
-export default function CustomerRequests() {
+export default function CustomerRequests<CustomerRequest>() {
   //== React State, Custom Hooks ==//
   const { requests, dispatch } = useRequestsContext();
 
@@ -37,21 +38,42 @@ export default function CustomerRequests() {
     fetchCustomerRequests();
   }, [requests, dispatch]);
 
+  //== Handlers ==//
+  const handleDelete = async (requestId: string | null) => {
+    const response = await fetch('/api/posts/' + requestId, {
+      method: 'DELETE',
+    });
+    const json = await response.json();
+
+    if (response.ok) {
+      dispatch({ type: 'DELETE_REQUEST', payload: json });
+    }
+  };
+
   //== ***** ***** ***** Component Return ***** ***** ***** ==//
   return (
     <>
       <Container>
         <div className='mx-auto max-w-2xl py-8 sm:py-10 lg:max-w-7xl'>
-          <div className='gap-y-4 sm:gap-y-10'>
+          <div>
             {requests &&
               requests.map((request) => (
-                <div key={request._id}>
-                  <div className='flex flex-1 flex-col space-y-2 p-4 justify-between text-black dark:text-white text-sm border border-gray-400 dark:border-gray-200 rounded-lg my-2'>
-                    <p className='text-sm flex-1'>{request.about}</p>
+                <div key={request._id} className='relative space-y-6'>
+                  <button
+                    onClick={() => handleDelete(request._id)}
+                    className='absolute top-0 right-0 mt-2 mr-2 text-sm text-gray-500 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-500 p-1 rounded'
+                  >
+                    <TrashIcon />
+                  </button>
+                  <div className='flex flex-1 flex-col space-y-4 p-4 text-black dark:text-white text-sm border border-gray-400 dark:border-gray-200 rounded-lg'>
+                    <p className='text-sm flex-1 font-semibold'>
+                      {request.about}
+                    </p>
                     <div className='text-gray-500 dark:text-gray-400'>
                       <p>{request.firstName}</p>
                       <p>{request.lastName}</p>
                       <p>{request.email}</p>
+                      {/* DEV -- TODO: If filePath = true, fetch upload image from S3 and render in component */}
                     </div>
                   </div>
                 </div>

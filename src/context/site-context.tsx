@@ -21,7 +21,8 @@ interface RequestsState {
 
 type RequestsAction =
   | { type: 'SET_REQUESTS'; payload: CustomerRequests[] }
-  | { type: 'CREATE_REQUEST'; payload: CustomerRequests };
+  | { type: 'CREATE_REQUEST'; payload: CustomerRequests }
+  | { type: 'DELETE_REQUEST'; payload: CustomerRequests };
 
 interface CustomerRequestsContextType {
   state: RequestsState;
@@ -74,6 +75,15 @@ export const requestsReducer = (
     case 'CREATE_REQUEST':
       return {
         requests: [action.payload, ...(state.requests || [])],
+      };
+    case 'DELETE_REQUEST':
+      return {
+        // Ensure that requests is not null before calling filter
+        requests: state.requests
+          ? state.requests.filter(
+              (request) => request._id !== action.payload._id
+            )
+          : null,
       };
     default:
       return state;

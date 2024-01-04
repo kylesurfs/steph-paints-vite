@@ -45,7 +45,7 @@ export type ModalWithImageProps = {
 
 // For customer request form
 export interface CustomerRequests {
-  _id: string | null | undefined;
+  _id: string | null ;
   about: string,
   firstName: string,
   lastName: string,
