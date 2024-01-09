@@ -1,19 +1,17 @@
-import dogImage from '/src/images/dog.jpeg'
+// import dogImage from '/src/images/dog.jpeg';
 
 //== ***** ***** ***** Exported Object ***** ***** ***** ==//
 export const PRODUCTS = [
-   {
+  {
     id: 1,
     name: 'Luis',
     href: '#',
     price: '$0',
-    description:
-      'Colored painting of Luis on canvas using acrylic.',
+    description: 'Colored painting of Luis on canvas using acrylic.',
     type: 'Painting',
     medium: 'Canvas',
     utensil: 'Acrylic',
-    imageSrc:
-      'src/images/luis.png',
+    imageSrc: 'src/images/luis.png',
     imageAlt: 'Colored painting of Luis on canvas using acrylic.',
     tag: 'People',
     status: 'Completed',
@@ -29,8 +27,7 @@ export const PRODUCTS = [
     medium: 'Paper',
     utensil: 'Pencil',
     imageSrc: 'src/images/fkj.png',
-    imageAlt:
-      'FKJ portrait drawn with pencil on paper.',
+    imageAlt: 'FKJ portrait drawn with pencil on paper.',
     tag: 'People',
     status: 'Completed',
   },
@@ -44,9 +41,9 @@ export const PRODUCTS = [
     type: 'Painting',
     medium: 'Canvas',
     utensil: 'Acrylic',
-    imageSrc:
-      'src/images/hb.png',
-    imageAlt: 'Black and white painting of Hailey Beiber on canvas using acrylic.',
+    imageSrc: 'src/images/hb.png',
+    imageAlt:
+      'Black and white painting of Hailey Beiber on canvas using acrylic.',
     tag: 'People',
     status: 'Completed',
   },
@@ -76,8 +73,7 @@ export const PRODUCTS = [
     type: 'Digital',
     medium: 'iPad',
     utensil: 'Procreate',
-    imageSrc:
-      'src/images/remi.png',
+    imageSrc: 'src/images/remi.png',
     imageAlt: 'Digital painting of our dog, Remi, on the iPad using Procreate.',
     tag: 'Animals',
     status: 'Completed',
@@ -87,13 +83,11 @@ export const PRODUCTS = [
     name: 'Woman',
     href: '#',
     price: '$0',
-    description:
-      'Digital painting of a woman on the iPad using Procreate.',
+    description: 'Digital painting of a woman on the iPad using Procreate.',
     type: 'Digital',
     medium: 'iPad',
     utensil: 'Procreate',
-    imageSrc:
-      'src/images/woman.png',
+    imageSrc: 'src/images/woman.png',
     imageAlt: 'Digital painting of a woman on the iPad using Procreate.',
     tag: 'People',
     status: 'Completed',
@@ -108,9 +102,9 @@ export const PRODUCTS = [
     type: 'Painting',
     medium: 'Canvas',
     utensil: 'Procreate + Acrylic',
-    imageSrc:
-      'src/images/dog.jpeg',
-    imageAlt: 'Digital painting of a dog, printed on a canvas, and painted over.',
+    imageSrc: 'src/images/dog.jpeg',
+    imageAlt:
+      'Digital painting of a dog, printed on a canvas, and painted over.',
     tag: 'Animals',
     status: 'Completed',
   },
@@ -119,13 +113,11 @@ export const PRODUCTS = [
     name: 'Dog with ball',
     href: '#',
     price: '$0',
-    description:
-      'Painting of the late Mr. Lincoln with a ball.',
+    description: 'Painting of the late Mr. Lincoln with a ball.',
     type: 'Painting',
     medium: 'Canvas',
     utensil: 'Acrylic',
-    imageSrc:
-      'src/images/shannon_dog.jpeg',
+    imageSrc: 'src/images/shannon_dog.jpeg',
     imageAlt: 'Painting of the late Mr. Lincoln with a ball.',
     tag: 'Animals',
     status: 'Completed',
@@ -135,18 +127,16 @@ export const PRODUCTS = [
     name: 'Girl',
     href: '#',
     price: '$0',
-    description:
-      'Black and white painting of a girl on cardboard.',
+    description: 'Black and white painting of a girl on cardboard.',
     type: 'Painting',
     medium: 'Cardboard',
     utensil: 'Acrylic',
-    imageSrc:
-      'src/images/girl.png',
+    imageSrc: 'src/images/girl.png',
     imageAlt: 'Black and white painting of a girl on cardboard.',
     tag: 'People',
     status: 'Completed',
   },
-   {
+  {
     id: 10,
     name: 'John Mayer',
     href: '#',
@@ -156,8 +146,7 @@ export const PRODUCTS = [
     type: 'Painting',
     medium: 'Canvas',
     utensil: 'Acrylic',
-    imageSrc:
-      'src/images/jm.png',
+    imageSrc: 'src/images/jm.png',
     imageAlt: 'Black and white painting of John Mayer on canvas using acrylic.',
     tag: 'People',
     status: 'Completed',
@@ -167,13 +156,11 @@ export const PRODUCTS = [
     name: 'Leonardo DiCaprio',
     href: '#',
     price: '$0',
-    description:
-      'Black and white painting of Leonardo DiCaprio',
+    description: 'Black and white painting of Leonardo DiCaprio',
     type: 'Painting',
-      medium: 'Canvas',
+    medium: 'Canvas',
     utensil: 'Acrylic',
-    imageSrc:
-      'src/images/leo.png',
+    imageSrc: 'src/images/leo.png',
     imageAlt: 'Black and white painting of Leonardo DiCaprio.',
     tag: 'People',
     status: 'Completed',
@@ -183,17 +170,31 @@ export const PRODUCTS = [
     name: 'London',
     href: '#',
     price: '$0',
-    description:
-      'Colored painting of London the dog',
+    description: 'Colored painting of London the dog',
     type: 'Painting',
-      medium: 'Canvas',
+    medium: 'Canvas',
     utensil: 'Watercolor',
-    imageSrc:
-      'src/images/london.png',
+    imageSrc: 'src/images/london.png',
     imageAlt: 'Colored painting of London the dog',
     tag: 'Animals',
     status: 'Completed',
   },
-  // Practice
+  // Practice using a different image import format
+  // {
+  //   id: 13,
+  //   name: 'Dog',
+  //   href: '#',
+  //   price: '$0',
+  //   description:
+  //     'This was a combination of digital and physical art. I drew this dog on the iPad using Procreate. Then I printed it onyo a canvas and painted over it to make it more textured.',
+  //   type: 'Painting',
+  //   medium: 'Canvas',
+  //   utensil: 'Procreate + Acrylic',
+  //   imageSrc: dogImage,
+  //   imageAlt:
+  //     'Digital painting of a dog, printed on a canvas, and painted over.',
+  //   tag: 'Animals',
+  //   status: 'Completed',
+  // },
   // More products...
 ];

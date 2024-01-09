@@ -25,7 +25,7 @@ export default function CustomerRequests<CustomerRequest>() {
   // DEV -- use useEffect to fetch customer requests from backend (still need to connect S3 image URL to imagePath field in MongoDB)
   useEffect(() => {
     const fetchCustomerRequests = async () => {
-      const response = await fetch('/api/posts'); // DEV -- Should I use Axios here instead of fetch?
+      const response = await fetch('/api/requests'); // DEV -- Should I use Axios here instead of fetch?
       const json = await response.json();
 
       console.log(json);
@@ -40,7 +40,7 @@ export default function CustomerRequests<CustomerRequest>() {
 
   //== Handlers ==//
   const handleDelete = async (requestId: string | null) => {
-    const response = await fetch('/api/posts/' + requestId, {
+    const response = await fetch('/api/requests/' + requestId, {
       method: 'DELETE',
     });
     const json = await response.json();

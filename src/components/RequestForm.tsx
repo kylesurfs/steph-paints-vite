@@ -139,7 +139,7 @@ export default function RequestForm() {
     console.log(JSON.stringify(displayValues));
 
     // DEV -- (WIP) NetNinja-type POST handling
-    const response = await fetch('/api/posts', {
+    const response = await fetch('/api/requests', {
       method: 'POST',
       body: JSON.stringify(displayValues), // DEV -- not sure why this needs to be displayValues instead of formData, but formData doesn't work
       headers: {
