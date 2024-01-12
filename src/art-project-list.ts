@@ -4,7 +4,7 @@
 export const PRODUCTS = [
   {
     id: 1,
-    name: 'Luis',
+    name: 'luis',
     href: '#',
     price: '$0',
     description: 'Colored painting of Luis on canvas using acrylic.',
@@ -18,7 +18,7 @@ export const PRODUCTS = [
   },
   {
     id: 2,
-    name: 'FKJ',
+    name: 'fkj',
     href: '#',
     price: '$0',
     description:
@@ -33,7 +33,7 @@ export const PRODUCTS = [
   },
   {
     id: 3,
-    name: 'Hailey Bieber',
+    name: 'hb',
     href: '#',
     price: '$0',
     description:
@@ -49,7 +49,7 @@ export const PRODUCTS = [
   },
   {
     id: 4,
-    name: 'African Kids',
+    name: 'kids',
     href: '#',
     price: '$0',
     description:
@@ -65,7 +65,7 @@ export const PRODUCTS = [
   },
   {
     id: 5,
-    name: 'Remi',
+    name: 'remi',
     href: '#',
     price: '$0',
     description:
@@ -80,7 +80,7 @@ export const PRODUCTS = [
   },
   {
     id: 6,
-    name: 'Woman',
+    name: 'woman',
     href: '#',
     price: '$0',
     description: 'Digital painting of a woman on the iPad using Procreate.',
@@ -94,7 +94,7 @@ export const PRODUCTS = [
   },
   {
     id: 7,
-    name: 'Dog',
+    name: 'dog',
     href: '#',
     price: '$0',
     description:
@@ -110,7 +110,7 @@ export const PRODUCTS = [
   },
   {
     id: 8,
-    name: 'Dog with ball',
+    name: 'shannon_dog',
     href: '#',
     price: '$0',
     description: 'Painting of the late Mr. Lincoln with a ball.',
@@ -124,7 +124,7 @@ export const PRODUCTS = [
   },
   {
     id: 9,
-    name: 'Girl',
+    name: 'girl',
     href: '#',
     price: '$0',
     description: 'Black and white painting of a girl on cardboard.',
@@ -138,7 +138,7 @@ export const PRODUCTS = [
   },
   {
     id: 10,
-    name: 'John Mayer',
+    name: 'jm',
     href: '#',
     price: '$0',
     description:
@@ -153,7 +153,7 @@ export const PRODUCTS = [
   },
   {
     id: 11,
-    name: 'Leonardo DiCaprio',
+    name: 'leo',
     href: '#',
     price: '$0',
     description: 'Black and white painting of Leonardo DiCaprio',
@@ -167,7 +167,7 @@ export const PRODUCTS = [
   },
   {
     id: 12,
-    name: 'London',
+    name: 'london',
     href: '#',
     price: '$0',
     description: 'Colored painting of London the dog',
@@ -182,7 +182,7 @@ export const PRODUCTS = [
   // Practice using a different image import format
   // {
   //   id: 13,
-  //   name: 'Dog',
+  //   name: 'dog_2',
   //   href: '#',
   //   price: '$0',
   //   description:

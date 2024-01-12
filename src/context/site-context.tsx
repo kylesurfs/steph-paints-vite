@@ -13,10 +13,14 @@ interface ModalContextType {
   toggleModal: () => void;
 }
 
-import { CustomerRequests } from '../types';
+import { CustomerRequests, IPortfolioData } from '../types';
 
 interface IRequestsState {
   requests: CustomerRequests[] | null;
+}
+
+interface IPortfolioDataState {
+  portfolio: IPortfolioData[] | null;
 }
 
 type RequestsAction =
@@ -24,12 +28,21 @@ type RequestsAction =
   | { type: 'CREATE_REQUEST'; payload: CustomerRequests }
   | { type: 'DELETE_REQUEST'; payload: CustomerRequests };
 
+type PortfolioDataAction = { type: 'SET_PORTFOLIO'; payload: IPortfolioData[] };
+
 interface ICustomerRequestsContext {
   state: IRequestsState;
   dispatch: React.Dispatch<RequestsAction>;
 }
 
+interface IPortfolioDataContext {
+  state: IPortfolioDataState;
+  dispatch: React.Dispatch<PortfolioDataAction>;
+}
+
 //== ***** ***** ***** Exports ***** ***** ***** ==//
+
+//-- Modal Context --//
 export const ModalContext = createContext<ModalContextType | undefined>(
   undefined
 );
@@ -58,6 +71,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
   );
 };
 
+//-- Customer Requests Context --//
 // new context to handle customer form submissions
 export const CustomerRequestsContext = createContext<
   ICustomerRequestsContext | undefined
@@ -105,5 +119,43 @@ export const CustomerRequestsContextProvider: React.FC<{
       {/* DEV -- MIGHT WANT TO SPREAD state ABOVE, like ...state */}
       {children}
     </CustomerRequestsContext.Provider>
+  );
+};
+
+//-- Portfolio Data Context --//
+// new context to handle rendering portfolio data
+export const PortfolioDataContext = createContext<
+  IPortfolioDataContext | undefined
+>(undefined);
+
+export const portfolioDataReducer = (
+  state: IPortfolioDataState,
+  action: PortfolioDataAction
+) => {
+  switch (action.type) {
+    case 'SET_PORTFOLIO':
+      return {
+        portfolio: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export const PortfolioDataContextProvider: React.FC<{
+  children: ReactNode;
+}> = ({ children }) => {
+  // useRecuer hook
+  const [state, dispatch] = useReducer(portfolioDataReducer, {
+    portfolio: [],
+  });
+
+  // dispatch({type: 'SET_REQUESTS', payload: [{}]})
+
+  return (
+    <PortfolioDataContext.Provider value={{ state, dispatch }}>
+      {/* DEV -- MIGHT WANT TO SPREAD state ABOVE, like ...state */}
+      {children}
+    </PortfolioDataContext.Provider>
   );
 };

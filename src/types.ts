@@ -54,3 +54,22 @@ export interface CustomerRequests {
   signedUrl?: string;
   createdAt: Date;
 }
+
+//-- Interface for portfolio objects stored in Mongodb --//
+export interface IPortfolioData {
+  _id: string | null;
+  id: number;
+  name: string;
+  href: string;
+  price: string;
+  description: string;
+  type: string;
+  medium: string;
+  utensil: string;
+  imageSrc: string;
+  imageAlt: string;
+  tag: string;
+  status: string;
+  signedUrl?: string;
+  createdAt: Date;
+}
