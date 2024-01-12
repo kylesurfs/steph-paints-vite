@@ -15,7 +15,7 @@ interface ModalContextType {
 
 import { CustomerRequests } from '../types';
 
-interface RequestsState {
+interface IRequestsState {
   requests: CustomerRequests[] | null;
 }
 
@@ -24,8 +24,8 @@ type RequestsAction =
   | { type: 'CREATE_REQUEST'; payload: CustomerRequests }
   | { type: 'DELETE_REQUEST'; payload: CustomerRequests };
 
-interface CustomerRequestsContextType {
-  state: RequestsState;
+interface ICustomerRequestsContext {
+  state: IRequestsState;
   dispatch: React.Dispatch<RequestsAction>;
 }
 
@@ -60,11 +60,11 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
 
 // new context to handle customer form submissions
 export const CustomerRequestsContext = createContext<
-  CustomerRequestsContextType | undefined
+  ICustomerRequestsContext | undefined
 >(undefined);
 
 export const requestsReducer = (
-  state: RequestsState,
+  state: IRequestsState,
   action: RequestsAction
 ) => {
   switch (action.type) {

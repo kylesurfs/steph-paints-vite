@@ -9,13 +9,12 @@ import { Container } from './Container';
 
 //== Icons ==//
 import { PhotoIcon } from '@heroicons/react/24/solid';
-import { useRequestsContext } from '../hooks/useRequestsContext';
 
 //-- NPM Functions --//
-// import axios from 'axios';
+import axios from 'axios';
 
 //== Environment Variables, TypeScript Interfaces, Data Objects ==//
-type FormData = {
+type IFormContent = {
   about: string;
   firstName: string;
   lastName: string;
@@ -35,24 +34,23 @@ export default function RequestForm() {
   //== React State, Custom Hooks ==//
   const navigate = useNavigate();
   const location = useLocation();
-  const { dispatch } = useRequestsContext();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [formData, setFormData] = useState<FormData>({
+  const [formContent, setformContent] = useState<IFormContent>({
     about: '',
     firstName: '',
     lastName: '',
     email: '',
-    // file: null,
+    file: null, //-- DEV - Might need to comment these out to prevent errors in dev --//
   });
   const [formErrors, setFormErrors] = useState<FormErrors>({});
   // Add a new state for display values, so they can be cleared if the ConfirmationModal is closed
-  const [displayValues, setDisplayValues] = useState<FormData>({
+  const [displayValues, setDisplayValues] = useState<IFormContent>({
     about: '',
     firstName: '',
     lastName: '',
     email: '',
-    // file: null,
+    file: null, //-- DEV - Might need to comment these out to prevent errors in dev --//
   });
   const [fileUploadError, setFileUploadError] = useState<string | null>(null);
 
@@ -103,7 +101,7 @@ export default function RequestForm() {
     } else {
       setFileUploadError(null);
       setDisplayValues({ ...displayValues, file });
-      setFormData({ ...formData, file });
+      setformContent({ ...formContent, file });
     }
   };
 
@@ -133,74 +131,45 @@ export default function RequestForm() {
     if (!validateForm()) return;
 
     // DEV -- BEFORE AXIOS
-    setFormData(displayValues);
-
-    console.log(displayValues); // DEV -- Replace this with submission logic
-    console.log(JSON.stringify(displayValues));
-
-    // DEV -- (WIP) NetNinja-type POST handling
-    const response = await fetch('/api/requests', {
-      method: 'POST',
-      body: JSON.stringify(displayValues), // DEV -- not sure why this needs to be displayValues instead of formData, but formData doesn't work
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const json = await response.json();
-
-    if (!response.ok) {
-      setFormErrors(json.error);
-      console.log(formErrors);
-    }
-
-    if (response.ok) {
-      console.log('New submission added to db');
-      dispatch({ type: 'CREATE_REQUEST', payload: json });
-    }
-
-    setIsModalOpen(true);
+    setformContent(displayValues);
 
     // DEV -- Trying Axios code to PUT object into S3
-    //   const formData = new FormData();
-    //   formData.append('about', displayValues.about);
-    //   formData.append('firstName', displayValues.firstName);
-    //   formData.append('lastName', displayValues.lastName);
-    //   formData.append('email', displayValues.email);
+    const formData = new FormData();
+    formData.append('about', displayValues.about);
+    formData.append('firstName', displayValues.firstName);
+    formData.append('lastName', displayValues.lastName);
+    formData.append('email', displayValues.email);
 
-    //   if (displayValues.file) {
-    //     formData.append('file-upload', displayValues.file);
-    //   }
+    if (displayValues.file) {
+      formData.append('file-upload', displayValues.file);
+    }
 
-    //   try {
-    //     const response = await axios.post('/api/posts', formData, {
-    //       headers: {
-    //         'Content-Type': 'multipart/form-data',
-    //       },
-    //     });
+    try {
+      const response = await axios.post('/api/requests', formData);
 
-    //     if (response.status === 201) {
-    //       // Handle success (e.g., show confirmation, clear form)
-    //       setIsModalOpen(true);
-    //       // Reset form and display values
-    //       setFormData({
-    //         about: '',
-    //         firstName: '',
-    //         lastName: '',
-    //         email: '',
-    //         file: null,
-    //       });
-    //       setDisplayValues({
-    //         about: '',
-    //         firstName: '',
-    //         lastName: '',
-    //         email: '',
-    //         file: null,
-    //       });
-    //     }
-    //   } catch (error) {
-    //     // Handle error (e.g., show error message)
-    //     console.error('There was an error uploading the file:', error);
-    //   }
+      if (response.status === 200) {
+        // Handle success (e.g., show confirmation, clear form)
+        setIsModalOpen(true);
+        // Reset form and display values
+        setformContent({
+          about: '',
+          firstName: '',
+          lastName: '',
+          email: '',
+          file: null,
+        });
+        setDisplayValues({
+          about: '',
+          firstName: '',
+          lastName: '',
+          email: '',
+          file: null,
+        });
+      }
+    } catch (error) {
+      // Handle error (e.g., show error message)
+      console.error('There was an error uploading the file:', error);
+    }
   };
 
   //-- Modal handling --//
@@ -215,7 +184,7 @@ export default function RequestForm() {
   };
 
   const handleModalButtonClick = (): void => {
-    // Close the modal and then navigate after state has been updated
+    //-- Close the modal and then navigate after state has been updated --//
     setIsModalOpen(false);
     // After the state is updated and the modal is closed, navigate to the home page
     setTimeout(() => {
@@ -289,10 +258,9 @@ export default function RequestForm() {
                             className='relative cursor-pointer rounded-md bg-white dark:bg-zinc-800 font-semibold text-teal-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-teal-600 focus-within:ring-offset-2 hover:text-teal-500'
                           >
                             <span>Upload a file</span>
-                            {/* TODO -- THIS INPUT WILL USE THE EXPRESS SERVER TO SEND TO S3 */}
                             <input
                               id='file-upload'
-                              name='file-upload'
+                              name='file-upload' //-- This name is used by the server --//
                               type='file'
                               className='sr-only'
                               onChange={handleFileChange}
@@ -312,7 +280,7 @@ export default function RequestForm() {
                             />
                           )}
                         </div>
-                        {!fileUploadError && formData.file && (
+                        {!fileUploadError && formContent.file && (
                           <div className='mt-4 flex leading-6 text-gray-600 dark:text-zinc-400 mx-14'>
                             <span className='text-green-200 text-sm bg-green-800 rounded-lg border border-green-800 px-2'>
                               File uploaded successfully

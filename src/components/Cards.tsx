@@ -1,5 +1,5 @@
 //== react, react-router-dom, Auth0 ==//
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 //== TSX Components, Functions ==//
 import { Container } from './Container';
@@ -7,7 +7,6 @@ import SearchNotFound from './SearchNotFound';
 import ModalWithImage from './ModalWithImage';
 
 //-- NPM Components --//
-import S3 from 'react-aws-s3-typescript';
 
 //== Environment Variables, TypeScript Interfaces, Data Objects ==//
 import { PRODUCTS } from '../art-project-list';
@@ -59,7 +58,7 @@ const Cards: React.FC<{
           <div className='mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8'>
             <h2 className='sr-only'>Products</h2>
 
-            <div className='grid grid-cols-1 gap-y-4 md:grid-cols-2 sm:gap-x-6 sm:gap-y-10 xl:grid-cols-3 lg:gap-x-8'>
+            <div className='grid grid-cols-1 gap-y-4 xl:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8'>
               {filteredProducts.map((product) => (
                 <div
                   key={product.id}
