@@ -10,7 +10,10 @@ import Contact from './pages/Contact';
 import Requests from './pages/Requests';
 import NotFoundPage from './pages/NotFoundPage';
 import { ThemeProvider } from './components/ThemeToggle';
-import { CustomerRequestsContextProvider } from './context/site-context';
+import {
+  CustomerRequestsContextProvider,
+  PortfolioDataContextProvider,
+} from './context/site-context';
 // import { ContextProvider } from './context/MyContext';
 
 //== ***** ***** ***** Exported Component ***** ***** ***** ==//
@@ -18,48 +21,50 @@ const App: React.FC = () => {
   //== ***** ***** ***** Component Return ***** ***** ***** ==//
   return (
     <ThemeProvider>
-      <CustomerRequestsContextProvider>
-        <Router>
-          {/* <ContextProvider> */}
-          <Routes>
-            <Route
-              path='/'
-              element={
-                <Layout>
-                  <Home />
-                </Layout>
-              }
-            />
-            <Route
-              path='/about'
-              element={
-                <Layout>
-                  <About />
-                </Layout>
-              }
-            />
-            {/* <Route path='/active' element={<ActiveProjects />} /> */}
-            <Route
-              path='/contact'
-              element={
-                <Layout>
-                  <Contact />
-                </Layout>
-              }
-            />
-            <Route
-              path='/requests'
-              element={
-                <Layout>
-                  <Requests />
-                </Layout>
-              }
-            />
-            <Route path='*' element={<NotFoundPage />} />
-          </Routes>
-          {/* </ContextProvider> */}
-        </Router>
-      </CustomerRequestsContextProvider>
+      <PortfolioDataContextProvider>
+        <CustomerRequestsContextProvider>
+          <Router>
+            {/* <ContextProvider> */}
+            <Routes>
+              <Route
+                path='/'
+                element={
+                  <Layout>
+                    <Home />
+                  </Layout>
+                }
+              />
+              <Route
+                path='/about'
+                element={
+                  <Layout>
+                    <About />
+                  </Layout>
+                }
+              />
+              {/* <Route path='/active' element={<ActiveProjects />} /> */}
+              <Route
+                path='/contact'
+                element={
+                  <Layout>
+                    <Contact />
+                  </Layout>
+                }
+              />
+              <Route
+                path='/requests'
+                element={
+                  <Layout>
+                    <Requests />
+                  </Layout>
+                }
+              />
+              <Route path='*' element={<NotFoundPage />} />
+            </Routes>
+            {/* </ContextProvider> */}
+          </Router>
+        </CustomerRequestsContextProvider>
+      </PortfolioDataContextProvider>
     </ThemeProvider>
   );
 };

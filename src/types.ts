@@ -14,6 +14,7 @@ export interface Product {
   imageAlt: string;
   tag: string;
   status: string;
+  signedUrl?: string;
 }
 
 // Used for FilterBar
