@@ -132,6 +132,7 @@ const Cards: React.FC<{
                 isOpen={isModalOpen}
                 setIsOpen={setIsModalOpen}
                 imageURL={selectedProduct.signedUrl}
+                imageOrientation={selectedProduct.imageOrientation}
               />
             )}
           </div>

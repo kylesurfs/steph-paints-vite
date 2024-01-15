@@ -15,6 +15,7 @@ export interface Product {
   tag: string;
   status: string;
   signedUrl?: string;
+  imageOrientation: 'horizontal' | 'vertical' | 'square';
 }
 
 // Used for FilterBar
@@ -42,6 +43,7 @@ export type ModalWithImageProps = {
   btnText?: string;
   onBtnClick?: () => void;
   imageURL?: string;
+  imageOrientation: 'horizontal' | 'vertical' | 'square';
 };
 
 // For customer request form
@@ -73,4 +75,5 @@ export interface IPortfolioData {
   status: string;
   signedUrl?: string;
   createdAt: Date;
+  imageOrientation: 'horizontal' | 'vertical' | 'square';
 }

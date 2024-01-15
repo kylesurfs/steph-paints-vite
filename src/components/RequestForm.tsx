@@ -35,6 +35,7 @@ export default function RequestForm() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formContent, setformContent] = useState<IFormContent>({
     about: '',
@@ -130,6 +131,10 @@ export default function RequestForm() {
     event.preventDefault();
     if (!validateForm()) return;
 
+    //-- Call the loading spinner --//
+    setIsModalOpen(true);
+    setIsLoading(true);
+
     // DEV -- BEFORE AXIOS
     setformContent(displayValues);
 
@@ -149,7 +154,9 @@ export default function RequestForm() {
 
       if (response.status === 200) {
         // Handle success (e.g., show confirmation, clear form)
-        setIsModalOpen(true);
+        // setIsModalOpen(true); // DEV -- changing this to open onSubmit, now that I have a loader
+        setIsLoading(false);
+
         // Reset form and display values
         setformContent({
           about: '',
@@ -169,6 +176,8 @@ export default function RequestForm() {
     } catch (error) {
       // Handle error (e.g., show error message)
       console.error('There was an error uploading the file:', error);
+    } finally {
+      setIsLoading(false); //-- Set this to false, even if there is an error, because the request is completed --//
     }
   };
 
@@ -423,6 +432,7 @@ export default function RequestForm() {
           title='Request submitted'
           description='Your request has been successfully submitted and you will be navigated back to the home page.'
           btnText='Return to home'
+          isLoading={isLoading}
         />
       )}
     </>
