@@ -7,6 +7,7 @@ import SearchNotFound from './SearchNotFound';
 import ModalWithImage from './ModalWithImage';
 
 //-- NPM Components --//
+import axios from 'axios';
 
 //== Environment Variables, TypeScript Interfaces, Data Objects ==//
 // import { PRODUCTS } from '../art-project-list';
@@ -25,13 +26,20 @@ const Cards: React.FC<{
   //-- Side Effects --//
   useEffect(() => {
     const fetchPortfolioData = async () => {
-      const response = await fetch('/api/portfolio'); // DEV -- TODO: Should I use Axios here instead of fetch?
-      const json = await response.json();
+      try {
+        const response = await axios.get('/api/portfolio', {
+          headers: {
+            'Cache-Control': 'max-age=3600', //-- Cache response for 1 hour --//
+          },
+        });
 
-      console.log(json);
+        console.log(response.data);
 
-      if (response.ok) {
-        dispatch({ type: 'SET_PORTFOLIO', payload: json });
+        if (response.status === 200) {
+          dispatch({ type: 'SET_PORTFOLIO', payload: response.data });
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
     };
 
