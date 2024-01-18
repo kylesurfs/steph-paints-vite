@@ -87,7 +87,7 @@ const Cards: React.FC<{
           <div className='mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8'>
             <h2 className='sr-only'>Products</h2>
 
-            <div className='grid grid-cols-1 gap-y-4 xl:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8'>
+            {/* <div className='grid grid-cols-1 gap-y-4 lg:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8'>
               {filteredProducts &&
                 filteredProducts.map((product) => (
                   <div
@@ -95,16 +95,29 @@ const Cards: React.FC<{
                     className='group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white dark:bg-zinc-900'
                     onClick={() => {
                       handleCardClick(product);
+                    }}> */}
+
+            {/* Updated section BELOW */}
+            <div className='columns-1 lg:columns-2 gap-4 break-inside-avoid'>
+              {filteredProducts &&
+                filteredProducts.map((product) => (
+                  <div
+                    key={product._id}
+                    className='mb-4 break-inside-avoid-page group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white dark:bg-zinc-900 hover:scale-105'
+                    onClick={() => {
+                      handleCardClick(product);
                     }}
                   >
-                    <div className='aspect-h-3 sm:aspect-h-4 aspect-w-3 bg-gray-200 sm:aspect-none group-hover:opacity-75 h-96 md:h-96'>
+                    {/* Updated section ABOVE */}
+
+                    <div className=' bg-gray-200 group-hover:opacity-75 h-auto w-auto'>
                       <img
                         src={product.signedUrl}
                         alt={product.imageAlt}
-                        className='h-full w-full object-cover object-center sm:h-full sm:w-full'
+                        className='object-cover object-center sm:h-full sm:w-full'
                       />
                     </div>
-                    <div className='flex flex-1 flex-col space-y-2 p-4 justify-between'>
+                    {/* <div className='flex flex-1 flex-col space-y-2 p-4 justify-between'>
                       <h3 className='text-sm font-medium text-gray-900 dark:text-gray-100'>
                         <a href={product.href}>
                           <span
@@ -118,14 +131,14 @@ const Cards: React.FC<{
                         {product.description}
                       </p>
                       <div className='flex items-center space-x-2'>
-                        <p className='text-sm text-black dark:text-gray-400 bg-white dark:bg-zinc-900 border border-b-1 border-gray-700 dark:border-gray-300 rounded-md px-6 mr-2'>
+                        <p className='text-xs text-gray-800 dark:text-gray-200 bg-gray-200 dark:bg-zinc-700  rounded-md px-6 py-1 mr-2'>
                           {product.type}
                         </p>
-                        <p className='text-sm text-black dark:text-gray-400 bg-white dark:bg-zinc-900 border border-b-1 border-gray-700 dark:border-gray-300 rounded-md px-6 mr-2'>
+                        <p className='text-xs text-gray-800 dark:text-gray-200 bg-gray-200 dark:bg-zinc-700  rounded-md px-6 py-1 mr-2'>
                           {product.medium}
                         </p>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 ))}
             </div>

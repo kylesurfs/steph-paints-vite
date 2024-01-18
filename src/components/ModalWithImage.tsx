@@ -55,8 +55,10 @@ export default function ModalWithImage({
   // Determine modal size class based on image orientation
   const modalSizeClass =
     imageOrientation === 'vertical'
-      ? 'max-w-md max-h-full'
-      : imageOrientation === 'horizontal'
+      ? 'w-full sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl max-h-4/5' // Allow the modal to be taller on the screen
+      : // ? 'max-w-4xl h-5/6' // Use larger width and more height for vertical images
+      // ? 'max-w-xl max-h-full'
+      imageOrientation === 'horizontal'
       ? 'max-w-3xl max-h-screen'
       : 'max-w-xl'; // default for square or unknown orientation
 
@@ -81,7 +83,7 @@ export default function ModalWithImage({
         </Transition.Child>
 
         <div className='fixed inset-0 z-10 w-screen overflow-y-auto'>
-          <div className='flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0'>
+          <div className='flex min-h-full items-center justify-center p-4 text-center sm:p-0'>
             <Transition.Child
               as={Fragment}
               enter='ease-out duration-800'
@@ -94,6 +96,7 @@ export default function ModalWithImage({
               <Dialog.Panel
                 ref={modalRef}
                 // className='relative transform overflow-hidden rounded-lg bg-white dark:bg-zinc-900 px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-4xl 2xl:max-w-6xl sm:p-6'
+                // className={`relative transform overflow-hidden rounded-lg bg-white dark:bg-zinc-900 px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full ${modalSizeClass} sm:p-6`}
                 className={`relative transform overflow-hidden rounded-lg bg-white dark:bg-zinc-900 px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full ${modalSizeClass} sm:p-6`}
               >
                 <div>
@@ -101,7 +104,12 @@ export default function ModalWithImage({
                     <img
                       src={imageURL}
                       alt={title}
-                      className='rounded-md max-h-96 w-full object-cover' // object-cover pulls the image to full size and covers space
+                      // className='rounded-md max-h-96 w-full object-cover' // object-cover pulls the image to full size and covers space
+                      className={`rounded-t-lg w-full ${
+                        imageOrientation === 'vertical'
+                          ? 'max-h-3/4'
+                          : 'max-h-full'
+                      } object-cover`}
                     />
                   </div>
                   <div className='mt-3 text-center sm:mt-5'>
@@ -121,7 +129,7 @@ export default function ModalWithImage({
                 <div className='mt-5 sm:mt-6'>
                   <button
                     type='button'
-                    className='inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                    className='inline-flex w-full justify-center rounded-md bg-teal-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600'
                     onClick={onBtnClick}
                     // Should be customizeable actions -- like navigate("/")
                   >
