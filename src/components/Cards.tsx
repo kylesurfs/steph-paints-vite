@@ -103,7 +103,7 @@ const Cards: React.FC<{
                 filteredProducts.map((product) => (
                   <div
                     key={product._id}
-                    className='mb-4 break-inside-avoid-page group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white dark:bg-zinc-900 hover:scale-105'
+                    className='mb-4 break-inside-avoid-page group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 dark:border-zinc-900 bg-white dark:bg-zinc-900 hover:scale-105'
                     onClick={() => {
                       handleCardClick(product);
                     }}
