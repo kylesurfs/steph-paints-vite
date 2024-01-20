@@ -10,8 +10,13 @@ import { Container } from './Container';
 //== Icons ==//
 import { PhotoIcon } from '@heroicons/react/24/solid';
 
+//-- NPM Functions --//
+import axios from 'axios';
+
 //== Environment Variables, TypeScript Interfaces, Data Objects ==//
-type FormData = {
+const VITE_BASE_URL: string | undefined = import.meta.env.VITE_BASE_URL;
+
+type IFormContent = {
   about: string;
   firstName: string;
   lastName: string;
@@ -32,22 +37,23 @@ export default function RequestForm() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [formData, setFormData] = useState<FormData>({
+  const [formContent, setformContent] = useState<IFormContent>({
     about: '',
     firstName: '',
     lastName: '',
     email: '',
-    file: null,
+    file: null, //-- DEV - Might need to comment these out to prevent errors in dev --//
   });
   const [formErrors, setFormErrors] = useState<FormErrors>({});
   // Add a new state for display values, so they can be cleared if the ConfirmationModal is closed
-  const [displayValues, setDisplayValues] = useState<FormData>({
+  const [displayValues, setDisplayValues] = useState<IFormContent>({
     about: '',
     firstName: '',
     lastName: '',
     email: '',
-    file: null,
+    file: null, //-- DEV - Might need to comment these out to prevent errors in dev --//
   });
   const [fileUploadError, setFileUploadError] = useState<string | null>(null);
 
@@ -93,13 +99,12 @@ export default function RequestForm() {
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (file && file.size > 10 * 1024 * 1024) {
-      // DEV -- need to increase this limit so steph gets high res photos to work form
       // 10MB limit
       setFileUploadError('Try uploading a file < 10MB.');
     } else {
       setFileUploadError(null);
       setDisplayValues({ ...displayValues, file });
-      setFormData({ ...formData, file });
+      setformContent({ ...formContent, file });
     }
   };
 
@@ -122,13 +127,63 @@ export default function RequestForm() {
 
   //-- Submission handling --//
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     event.preventDefault();
     if (!validateForm()) return;
-    setFormData(displayValues);
 
-    console.log(displayValues); // DEV -- Replace this with submission logic
+    //-- Call the loading spinner --//
     setIsModalOpen(true);
+    setIsLoading(true);
+
+    // DEV -- BEFORE AXIOS
+    setformContent(displayValues);
+
+    // DEV -- Trying Axios code to PUT object into S3
+    const formData = new FormData();
+    formData.append('about', displayValues.about);
+    formData.append('firstName', displayValues.firstName);
+    formData.append('lastName', displayValues.lastName);
+    formData.append('email', displayValues.email);
+
+    if (displayValues.file) {
+      formData.append('file-upload', displayValues.file);
+    }
+
+    try {
+      const response = await axios.post(
+        `${VITE_BASE_URL}/api/requests`,
+        formData
+      );
+
+      if (response.status === 200) {
+        // Handle success (e.g., show confirmation, clear form)
+        // setIsModalOpen(true); // DEV -- changing this to open onSubmit, now that I have a loader
+        setIsLoading(false);
+
+        // Reset form and display values
+        setformContent({
+          about: '',
+          firstName: '',
+          lastName: '',
+          email: '',
+          file: null,
+        });
+        setDisplayValues({
+          about: '',
+          firstName: '',
+          lastName: '',
+          email: '',
+          file: null,
+        });
+      }
+    } catch (error) {
+      // Handle error (e.g., show error message)
+      console.error('There was an error uploading the file:', error);
+    } finally {
+      setIsLoading(false); //-- Set this to false, even if there is an error, because the request is completed --//
+    }
   };
 
   //-- Modal handling --//
@@ -143,7 +198,7 @@ export default function RequestForm() {
   };
 
   const handleModalButtonClick = (): void => {
-    // Close the modal and then navigate after state has been updated
+    //-- Close the modal and then navigate after state has been updated --//
     setIsModalOpen(false);
     // After the state is updated and the modal is closed, navigate to the home page
     setTimeout(() => {
@@ -219,10 +274,11 @@ export default function RequestForm() {
                             <span>Upload a file</span>
                             <input
                               id='file-upload'
-                              name='file-upload'
+                              name='file-upload' //-- This name is used by the server --//
                               type='file'
                               className='sr-only'
                               onChange={handleFileChange}
+                              accept='image/*'
                             />
                           </label>
                           <p className='pl-1'>or drag and drop</p>
@@ -238,7 +294,7 @@ export default function RequestForm() {
                             />
                           )}
                         </div>
-                        {!fileUploadError && formData.file && (
+                        {!fileUploadError && formContent.file && (
                           <div className='mt-4 flex leading-6 text-gray-600 dark:text-zinc-400 mx-14'>
                             <span className='text-green-200 text-sm bg-green-800 rounded-lg border border-green-800 px-2'>
                               File uploaded successfully
@@ -381,6 +437,7 @@ export default function RequestForm() {
           title='Request submitted'
           description='Your request has been successfully submitted and you will be navigated back to the home page.'
           btnText='Return to home'
+          isLoading={isLoading}
         />
       )}
     </>

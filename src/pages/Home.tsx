@@ -11,6 +11,15 @@ import { FilterIconData } from '../types';
 
 //== ***** ***** ***** Exported Component ***** ***** ***** ==//
 const Home: React.FC = () => {
+  //-- Helper to see what mode app is running in --//
+  if (import.meta.env.MODE === 'production') {
+    console.log('Running in production mode');
+  } else if (import.meta.env.MODE === 'development') {
+    console.log('Running in development mode');
+  } else {
+    console.log('Unknown mode');
+  }
+
   //== React State, Custom Hooks ==//
   const [filter, setFilter] = useState<FilterIconData>({
     filterType: 'none',

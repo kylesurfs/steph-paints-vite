@@ -1,23 +1,25 @@
 // Used to define the data in the art-project-list.ts file
 // Called in the Cards component
 // DEV using interface so I can extend Product as a new type, InProgressProduct (i.e. interface InProgressProduct extends Product)
-export interface Product { 
-    id: number;
-    name: string;
-    href: string;
-    price: string;
-    description: string;
-    type: string;
-    medium: string;
-    utensil: string;
-    imageSrc: string;
-    imageAlt: string;
-    tag: string;
-    status: string;
-  };
+export interface Product {
+  id: number;
+  name: string;
+  href: string;
+  price: string;
+  description: string;
+  type: string;
+  medium: string;
+  utensil: string;
+  imageSrc: string;
+  imageAlt: string;
+  tag: string;
+  status: string;
+  signedUrl?: string;
+  imageOrientation: 'horizontal' | 'vertical' | 'square';
+}
 
-  // Used for FilterBar
-  export type FilterIconData = {
+// Used for FilterBar
+export type FilterIconData = {
   icon?: JSX.Element;
   label?: string;
   filterType: 'none' | 'type' | 'tag';
@@ -41,4 +43,37 @@ export type ModalWithImageProps = {
   btnText?: string;
   onBtnClick?: () => void;
   imageURL?: string;
+  imageOrientation: 'horizontal' | 'vertical' | 'square';
 };
+
+// For customer request form
+export interface CustomerRequests {
+  _id: string | null;
+  about: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  filePath?: string;
+  signedUrl?: string;
+  createdAt: Date;
+}
+
+//-- Interface for portfolio objects stored in Mongodb --//
+export interface IPortfolioData {
+  _id: string | null;
+  id: number;
+  name: string;
+  href: string;
+  price: string;
+  description: string;
+  type: string;
+  medium: string;
+  utensil: string;
+  imageSrc: string;
+  imageAlt: string;
+  tag: string;
+  status: string;
+  signedUrl?: string;
+  createdAt: Date;
+  imageOrientation: 'horizontal' | 'vertical' | 'square';
+}

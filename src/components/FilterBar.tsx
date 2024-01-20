@@ -89,10 +89,10 @@ const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange }) => {
                   <div
                     key={index}
                     onClick={() => handleFilterClick(item)}
-                    className={`flex flex-col items-center hover:text-black hover:dark:text-white transition border-b border-transparent hover:border-b hover:border-gray-300 active:border-b active:border-gray-300 pb-1
+                    className={`flex flex-col items-center hover:text-gray-900 hover:dark:text-white transition border-b border-transparent hover:border-b hover:border-gray-300 active:border-b active:border-gray-300 pb-1
                     ${
                       activeFilter === item.filterValue
-                        ? 'text-black dark:text-white border-b border-gray-300'
+                        ? 'text-gray-900 dark:text-white border-b border-gray-300'
                         : 'text-gray-500 dark:text-gray-400 '
                     }`}
                   >
