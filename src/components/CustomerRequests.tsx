@@ -7,9 +7,10 @@ import { TrashIcon } from './UI/icons';
 //== TSX Components, Functions ==//
 
 //== Environment Variables, TypeScript Interfaces, Data Objects ==//
+const VITE_BASE_URL: string | undefined = import.meta.env.VITE_BASE_URL;
 
 //== ***** ***** ***** Exported Component ***** ***** ***** ==//
-export default function CustomerRequests<CustomerRequest>() {
+export default function CustomerRequests() {
   //== React State, Custom Hooks ==//
   const { requests, dispatch } = useRequestsContext();
 
@@ -17,7 +18,7 @@ export default function CustomerRequests<CustomerRequest>() {
   //-- DEV -- use useEffect to fetch customer requests from server --//
   useEffect(() => {
     const fetchCustomerRequests = async () => {
-      const response = await fetch('/api/requests'); // DEV -- TODO: Should I use Axios here instead of fetch?
+      const response = await fetch(`${VITE_BASE_URL}/api/requests`); // DEV -- TODO: Should I use Axios here instead of fetch?
       const json = await response.json();
 
       console.log(json);
@@ -28,11 +29,11 @@ export default function CustomerRequests<CustomerRequest>() {
     };
 
     fetchCustomerRequests();
-  }, [requests, dispatch]);
+  }, []);
 
   //== Handlers ==//
   const handleDelete = async (requestId: string | null) => {
-    const response = await fetch('/api/requests/' + requestId, {
+    const response = await fetch(`${VITE_BASE_URL}/api/requests/${requestId}`, {
       method: 'DELETE',
     });
     const json = await response.json();

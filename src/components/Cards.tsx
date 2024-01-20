@@ -9,6 +9,8 @@ import ModalWithImage from './ModalWithImage';
 //-- NPM Components --//
 import axios from 'axios';
 
+const VITE_BASE_URL: string | undefined = import.meta.env.VITE_BASE_URL;
+
 //== Environment Variables, TypeScript Interfaces, Data Objects ==//
 // import { PRODUCTS } from '../art-project-list';
 import { FilterIconData, Product } from '../types';
@@ -27,7 +29,7 @@ const Cards: React.FC<{
   useEffect(() => {
     const fetchPortfolioData = async () => {
       try {
-        const response = await axios.get('/api/portfolio', {
+        const response = await axios.get(`${VITE_BASE_URL}/api/portfolio`, {
           headers: {
             'Cache-Control': 'max-age=3600', //-- Cache response for 1 hour --//
           },

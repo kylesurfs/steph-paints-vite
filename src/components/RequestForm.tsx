@@ -14,6 +14,8 @@ import { PhotoIcon } from '@heroicons/react/24/solid';
 import axios from 'axios';
 
 //== Environment Variables, TypeScript Interfaces, Data Objects ==//
+const VITE_BASE_URL: string | undefined = import.meta.env.VITE_BASE_URL;
+
 type IFormContent = {
   about: string;
   firstName: string;
@@ -150,7 +152,10 @@ export default function RequestForm() {
     }
 
     try {
-      const response = await axios.post('/api/requests', formData);
+      const response = await axios.post(
+        `${VITE_BASE_URL}/api/requests`,
+        formData
+      );
 
       if (response.status === 200) {
         // Handle success (e.g., show confirmation, clear form)
