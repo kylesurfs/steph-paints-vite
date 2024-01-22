@@ -39,14 +39,8 @@ export default function RequestForm() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [formContent, setformContent] = useState<IFormContent>({
-    about: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    file: null, //-- DEV - Might need to comment these out to prevent errors in dev --//
-  });
   const [formErrors, setFormErrors] = useState<FormErrors>({});
+
   // Add a new state for display values, so they can be cleared if the ConfirmationModal is closed
   const [displayValues, setDisplayValues] = useState<IFormContent>({
     about: '',
@@ -81,6 +75,7 @@ export default function RequestForm() {
       [name]: value,
     });
 
+    //-- Dynamically check for TypeScript erros on the form inputs --//
     // Type guard to check if a key is a keyof FormErrors
     function isKeyOfFormErrors(key: any): key is keyof FormErrors {
       return key in formErrors;
@@ -88,7 +83,7 @@ export default function RequestForm() {
 
     // Check if the name is a valid key of FormErrors and if there's an error for this field
     if (isKeyOfFormErrors(name) && formErrors[name]) {
-      // Clear the error for this field
+      // Clear the error for this field once a user starts modifying the field
       setFormErrors({
         ...formErrors,
         [name]: undefined,
@@ -104,7 +99,7 @@ export default function RequestForm() {
     } else {
       setFileUploadError(null);
       setDisplayValues({ ...displayValues, file });
-      setformContent({ ...formContent, file });
+      // setformContent({ ...formContent, file });
     }
   };
 
@@ -137,9 +132,6 @@ export default function RequestForm() {
     setIsModalOpen(true);
     setIsLoading(true);
 
-    // DEV -- BEFORE AXIOS
-    setformContent(displayValues);
-
     // DEV -- Trying Axios code to PUT object into S3
     const formData = new FormData();
     formData.append('about', displayValues.about);
@@ -163,13 +155,6 @@ export default function RequestForm() {
         setIsLoading(false);
 
         // Reset form and display values
-        setformContent({
-          about: '',
-          firstName: '',
-          lastName: '',
-          email: '',
-          file: null,
-        });
         setDisplayValues({
           about: '',
           firstName: '',
@@ -294,7 +279,7 @@ export default function RequestForm() {
                             />
                           )}
                         </div>
-                        {!fileUploadError && formContent.file && (
+                        {!fileUploadError && displayValues.file && (
                           <div className='mt-4 flex leading-6 text-gray-600 dark:text-zinc-400 mx-14'>
                             <span className='text-green-200 text-sm bg-green-800 rounded-lg border border-green-800 px-2'>
                               File uploaded successfully
