@@ -31,7 +31,7 @@ const Cards: React.FC<{
       try {
         const response = await axios.get(`${VITE_BASE_URL}/api/portfolio`, {
           headers: {
-            'Cache-Control': 'max-age=3600', //-- Cache response for 1 hour --//
+            'Cache-Control': 'max-age=31536000, immutable', // Cache for 1 year (31536000 seconds) since the images won't change
           },
         });
 
