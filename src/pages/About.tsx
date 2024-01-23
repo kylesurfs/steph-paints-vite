@@ -42,7 +42,7 @@ export default function About() {
                 <>
                   <div className='max-w-xs px-2.5 lg:max-w-none'>
                     <img
-                      src='src/images/stephAndKyle.png'
+                      src={imageSrc}
                       alt='Profile picture'
                       sizes='(min-width: 1024px) 32rem, 20rem'
                       className='aspect-square rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800'
