@@ -110,7 +110,7 @@ const Cards: React.FC<{
             </div>
             {isModalOpen && selectedProduct && (
               <ModalWithImage
-                title={selectedProduct.name}
+                // title={selectedProduct.name}
                 description={selectedProduct.description}
                 btnText='Close'
                 onBtnClick={() => {
