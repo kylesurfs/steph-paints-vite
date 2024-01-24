@@ -95,8 +95,6 @@ export default function ModalWithImage({
             >
               <Dialog.Panel
                 ref={modalRef}
-                // className='relative transform overflow-hidden rounded-lg bg-white dark:bg-zinc-900 px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-4xl 2xl:max-w-6xl sm:p-6'
-                // className={`relative transform overflow-hidden rounded-lg bg-white dark:bg-zinc-900 px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full ${modalSizeClass} sm:p-6`}
                 className={`relative transform overflow-hidden rounded-lg bg-white dark:bg-zinc-900 px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full ${modalSizeClass} sm:p-6`}
               >
                 <div>
@@ -104,7 +102,6 @@ export default function ModalWithImage({
                     <img
                       src={imageURL}
                       alt={title}
-                      // className='rounded-md max-h-96 w-full object-cover' // object-cover pulls the image to full size and covers space
                       className={`rounded-t-lg w-full ${
                         imageOrientation === 'vertical'
                           ? 'max-h-3/4'
