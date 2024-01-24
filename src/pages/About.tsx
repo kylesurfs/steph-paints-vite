@@ -71,7 +71,7 @@ export default function About() {
                   Hi, this is Kyle. I made this site for Steph but she hasn't
                   written this section yet, so I'll share a little bit about
                   Steph. Odds are, if you're on this site you already know her
-                  well, but here are some more of my thoughts about my wife.
+                  well, but here are some of my own thoughts about my wife.
                 </p>
                 <p>
                   Steph is quite the artist, quite the wife, and quite the
