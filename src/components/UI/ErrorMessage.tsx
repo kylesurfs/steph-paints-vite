@@ -9,6 +9,7 @@ type ErrorMessageProps = {
   className?: string;
   title: string;
   message: string;
+  textClassName?: string; // Optional param to make error message not red
 };
 
 //== ***** ***** ***** Exported Component ***** ***** ***** ==//
@@ -16,6 +17,7 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({
   className,
   title,
   message,
+  textClassName,
 }) => {
   return (
     <div
@@ -26,17 +28,19 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({
     >
       <div className='flex items-start'>
         <div className='flex-shrink-0'>
-          <div className='h-8 w-8 rounded-full bg-red-100 flex items-center justify-center'>
+          <div className='h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center'>
             {/* The `fill` prop should be `style` as `fill` is not a valid prop for this component */}
             <ExclamationTriangleIcon
-              className='h-6 w-6 text-red-600'
+              className={`h-6 w-6 text-red-600 ${textClassName}`} // textClassName overrides text-red-600 if it is !null
               aria-hidden='true'
             />
           </div>
         </div>
         <div className='ml-3'>
           <h3 className='text-sm font-medium text-black'>{title}</h3>
-          <div className='text-sm text-red-600'>{message}</div>
+          <div className={`text-sm text-red-600 ${textClassName}`}>
+            {message}
+          </div>
         </div>
       </div>
     </div>
