@@ -66,25 +66,34 @@ export default function About() {
                   our dog, Remi. If I'm not working, I'm probably painting or
                   surfing!
                 </p>
+                <p>-------</p>
                 <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet
-                  officiis consequatur harum maiores earum. Unde similique fuga
-                  minus mollitia dolorum inventore placeat voluptatibus suscipit
-                  ex! Ullam non voluptatibus fugiat doloremque.
+                  Hi, this is Kyle. I made this site for Steph but she hasn't
+                  written this section yet, so I'll share a little bit about
+                  Steph. Odds are, if you're on this site you already know her
+                  well, but here are some more of my thoughts about my wife.
                 </p>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non
-                  et ut libero facilis fugit accusantium, harum, amet, deleniti
-                  vel perspiciatis dolore quas labore officiis doloremque dicta
-                  inventore sint repellendus saepe!
+                  Steph is quite the artist, quite the wife, and quite the
+                  human. Although she's an Olympian, you'd never hear it from
+                  her. She's the most humble and down-to-earth person I know,
+                  which is funny given she's also the most accomplished. She's
+                  constantly learning new things: from art to cooking, surfing
+                  to painting. Even if she's already great at something, she
+                  competes against herself to get better.
                 </p>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Molestias, quibusdam cumque perferendis iure unde perspiciatis
-                  asperiores sequi quos quaerat, quis repellendus harum
-                  cupiditate quae dicta neque aliquid! Laborum, libero
-                  praesentium.
+                  Including art. Steph puts the time into mastering
+                  fundamentals. I can assure you that commissioning Stephanie
+                  won't be a regret of yours. She's going to be quite the
+                  accomplished artist, because she wants to be. And what
+                  Stephanie wants, she makes happen.
                 </p>
+                <p>
+                  Now's your chance to get in on her talents before the rest of
+                  the world finds out.
+                </p>
+                <p>-- Kyle</p>
               </div>
             </div>
             <div className='lg:pl-20'>
