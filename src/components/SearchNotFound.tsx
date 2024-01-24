@@ -13,7 +13,7 @@ export default function SearchNotFound() {
           message="These items haven't been completed yet. Please check here again
             soon, or submit a request if you have something in particular you
             are looking for."
-          className='w-full text-teal-600'
+          className='w-full'
         />
       </Container>
     </>
